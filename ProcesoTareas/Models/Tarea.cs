@@ -17,12 +17,14 @@ namespace ProcesoTareas.Models
         [Required(ErrorMessage = "El campo Tipo es obligatorio")]
         public Nullable<int> TipoTareaId { get; set; }
         public List<TipoTarea> TipoTarea { get; set; }
-
+       
+    
         //forenkey
         [Required(ErrorMessage = "El campo prioridad es obligatorio")]
         public Nullable<int> PrioridadId { get; set; }
         public List<Prioridad> Prioridad { get; set; }
-        
+   
+
         //forenkey
         public Nullable<int> EstadoId { get; set; }
         public List<Estado> Estado { get; set; }
@@ -34,5 +36,11 @@ namespace ProcesoTareas.Models
 
         [Required(ErrorMessage = "El campo prioridad es obligatorio")]
         public DateTime FechaVencimiento { get; set; }
+
+
+
+        //public  Tarea dsTarea { get; set; }
+        //public  TipoTarea dsTipoTarea { get; set; }
+        //public  Prioridad dsPrioridad { get; set; }
     }
 }

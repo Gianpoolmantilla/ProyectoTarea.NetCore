@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProcesoTareas.Models;
+using ProcesoTareas.Models.ViewModelEstados;
 
 namespace ProcesoTareas.Controllers
 {
@@ -19,11 +20,37 @@ namespace ProcesoTareas.Controllers
         }
 
         // GET: Tareas
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Tarea.ToListAsync());
-        }      
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Tarea.ToListAsync());
+        //}
 
+        public IActionResult Index()
+        {
+            List<Prioridad> Dsprioridad = _context.Prioridades.ToList();
+            List<TipoTarea> Dstipo = _context.TipoTareas.ToList();
+
+
+            List<Pendiente> Dstarea = (from Tr in _context.Tarea
+                                       join ti in _context.TipoTareas 
+                                       on Tr.TipoTareaId equals ti.Id
+                                       join pr in _context.Prioridades
+                                       on Tr.PrioridadId equals pr.Id
+                                       select new Pendiente
+                                       {
+                                           Id = Tr.Id,
+                                           TipoTarea = ti.Descripcion,
+                                           Prioridad = pr.Descripcion,
+                                           Nombre = Tr.Nombre,
+                                           FechaAlta = Tr.FechaAlta,
+                                           FechaVencimiento = Tr.FechaVencimiento,
+                                           Observacion = Tr.Observacion
+
+
+                                       }).ToList();
+
+            return View(Dstarea);
+        }
         // GET: Tareas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,10 +72,10 @@ namespace ProcesoTareas.Controllers
         // GET: Tareas/Create
         public IActionResult Create()
         {
-            Tarea Coleccion = new Tarea();            
+            Tarea Coleccion = new Tarea();
             //Coleccion.FechaVencimiento = DateTime.Now.AddDays(+1);
             Coleccion.Prioridad = _context.Prioridades.ToList();
-            Coleccion.TipoTarea= _context.TipoTareas.ToList();
+            Coleccion.TipoTarea = _context.TipoTareas.ToList();
             return View(Coleccion);
         }
 
@@ -68,7 +95,7 @@ namespace ProcesoTareas.Controllers
                 tarea.UserId = "";
                 _context.Add(tarea);
                 await _context.SaveChangesAsync();
-            
+
 
                 if (ModelState.ErrorCount == 0)
                 {

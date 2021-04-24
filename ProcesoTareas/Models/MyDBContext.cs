@@ -18,7 +18,6 @@ namespace ProcesoTareas.Models
         public DbSet<Prioridad> Prioridades { get; set; }
         public DbSet<TipoTarea> TipoTareas { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-      
-
+        public object Tareas { get; internal set; }
     }
 }
