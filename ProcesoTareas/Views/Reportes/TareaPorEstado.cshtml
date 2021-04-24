@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProcesoTareas.Models.Reportes>
+@{
+    ViewData["Title"] = "TareaPorEstado";
+}
+
+<h1>TareaPorEstado</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            tarea
+        </th>
+        <th>
+            tipo de tarea
+        </th>
+        <th>
+            Prioridad
+        </th>
+        <th>
+            Obervacion
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarea.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarea.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoTarea.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prioridad.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarea.Observacion)
+            </td>
+
+        </tr>
+    }
+
+</table>

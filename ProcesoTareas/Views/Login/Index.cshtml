@@ -1,0 +1,37 @@
+﻿@model ProcesoTareas.Models.Usuario
+
+@{
+
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>login</title>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  
+
+</head>
+<body>
+    <div id="login-page">
+        <div class="form">
+            <form class="login-form">
+                <label>usuario</label>
+                <input id="txtUsuario" type="text" placeholder="usuario" />
+                <label>clave</label>
+                <input id="txtclave" type="password" placeholder="password" />
+                <button type="button" class="btn-success" id="btnEntrar">Entrar</button>
+            </form>
+        </div>
+    </div>
+    <script src="/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/js/Login.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="sweetalert2.all.min.js"></script>
+</body>
+</html>

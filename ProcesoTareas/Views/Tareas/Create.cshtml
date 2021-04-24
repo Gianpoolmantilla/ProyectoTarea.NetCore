@@ -1,0 +1,87 @@
+﻿@model ProcesoTareas.Models.Tarea
+
+@{
+    ViewData["Title"] = "Alta de Tarea";
+    Layout = "_Layout";
+}
+
+
+
+
+
+
+
+<h1>Crear</h1>
+
+<h4>Tarea</h4>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="control-label col-md-2">Nombre</div>
+                <div class="col-6">
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+
+                </div>
+              
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2">Vencimiento</div>
+                <div class="col-4">
+                    <input asp-for="FechaVencimiento" class="form-control" value="" />
+                    <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
+                </div>
+                  
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-2">Tipo De Tarea</div>
+                    <div class="col-4">
+                        @Html.DropDownListFor(model => model.TipoTareaId, new SelectList(Model.TipoTarea, "Id", "Descripcion"), "Seleccione un prioridad..",
+                           new { id = "normalDropwn", @class = "form-control" })
+                        <span asp-validation-for="TipoTareaId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-2">Prioridad</div>
+                    <div class="col-4">
+                        @Html.DropDownListFor(model => model.PrioridadId, new SelectList(Model.Prioridad, "Id", "Descripcion"), "Seleccione un prioridad..",
+                           new { id = "normalDropwn2", @class = "form-control" })
+                        <span asp-validation-for="PrioridadId" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">Observacion</div>
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Observacion, new { cols = 600, rows = 10, @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-12">
+                            <input type="submit" value="Guardar" class="btn btn-success" />
+                            <button class="btn btn-danger" value="atras">
+                                @Html.ActionLink("Atras", "Index", null, "Tarea", htmlAttributes: new { @class = "text-white" })
+
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+</form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
