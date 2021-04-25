@@ -25,49 +25,8 @@ namespace ProcesoTareas.Controllers
         //    return View(await _context.Tarea.ToListAsync());
         //}
 
-        public IActionResult Index()
-        {
-            List<Prioridad> Dsprioridad = _context.Prioridades.ToList();
-            List<TipoTarea> Dstipo = _context.TipoTareas.ToList();
 
-
-            List<Pendiente> Dstarea = (from Tr in _context.Tarea
-                                       join ti in _context.TipoTareas 
-                                       on Tr.TipoTareaId equals ti.Id
-                                       join pr in _context.Prioridades
-                                       on Tr.PrioridadId equals pr.Id
-                                       select new Pendiente
-                                       {
-                                           Id = Tr.Id,
-                                           TipoTarea = ti.Descripcion,
-                                           Prioridad = pr.Descripcion,
-                                           Nombre = Tr.Nombre,
-                                           FechaAlta = Tr.FechaAlta,
-                                           FechaVencimiento = Tr.FechaVencimiento,
-                                           Observacion = Tr.Observacion
-
-
-                                       }).ToList();
-
-            return View(Dstarea);
-        }
-        // GET: Tareas/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tarea = await _context.Tarea
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (tarea == null)
-            {
-                return NotFound();
-            }
-
-            return View(tarea);
-        }
+        #region Crear
 
         // GET: Tareas/Create
         public IActionResult Create()
@@ -88,7 +47,7 @@ namespace ProcesoTareas.Controllers
         {
             if (ModelState.IsValid)
             {
-                tarea.EstadoId = 0;
+                tarea.EstadoId = 100;
                 tarea.FechaAlta = DateTime.Now;
                 tarea.FechaMod = DateTime.Now;
                 tarea.Debaja = "N";
@@ -106,15 +65,50 @@ namespace ProcesoTareas.Controllers
             return View(tarea);
         }
 
+        #endregion
+
+
+        #region Modificacion
+
+        public IActionResult Modificacion()
+        {
+            List<Prioridad> Dsprioridad = _context.Prioridades.ToList();
+            List<TipoTarea> Dstipo = _context.TipoTareas.ToList();
+
+
+            List<Modificacion> Dstarea = (from Tr in _context.Tarea
+                                          join ti in _context.TipoTareas
+                                          on Tr.TipoTareaId equals ti.Id
+                                          join pr in _context.Prioridades
+                                          on Tr.PrioridadId equals pr.Id
+                                          select new Modificacion
+                                          {
+                                              Id = Tr.Id,
+                                              TipoTarea = ti.Descripcion,
+                                              Prioridad = pr.Descripcion,
+                                              Nombre = Tr.Nombre,
+                                              FechaAlta = Tr.FechaAlta.ToString("yyyy-MM-dd HH:mm"),
+                                              FechaVencimiento = Tr.FechaVencimiento.ToString("yyyy-MM-dd"),
+                                              Observacion = Tr.Observacion
+
+
+                                          }).ToList();
+
+            return View(Dstarea);
+        }
+
         // GET: Tareas/Edit/5
         public async Task<IActionResult> Edit(int? id)
-        {
+        {  
             if (id == null)
             {
                 return NotFound();
             }
 
             var tarea = await _context.Tarea.FindAsync(id);
+            tarea.Prioridad = _context.Prioridades.ToList();
+            tarea.TipoTarea = _context.TipoTareas.ToList();
+
             if (tarea == null)
             {
                 return NotFound();
@@ -138,6 +132,7 @@ namespace ProcesoTareas.Controllers
             {
                 try
                 {
+                    tarea.EstadoId = 50;
                     _context.Update(tarea);
                     await _context.SaveChangesAsync();
                 }
@@ -152,26 +147,8 @@ namespace ProcesoTareas.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Modificacion));
             }
-            return View(tarea);
-        }
-
-        // GET: Tareas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tarea = await _context.Tarea
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (tarea == null)
-            {
-                return NotFound();
-            }
-
             return View(tarea);
         }
 
@@ -183,12 +160,109 @@ namespace ProcesoTareas.Controllers
             var tarea = await _context.Tarea.FindAsync(id);
             _context.Tarea.Remove(tarea);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Modificacion));
         }
 
         private bool TareaExists(int id)
         {
             return _context.Tarea.Any(e => e.Id == id);
         }
+
+        #endregion
+
+
+        #region Pendientes
+
+        public IActionResult Pendientes()
+        {
+            List<Prioridad> Dsprioridad = _context.Prioridades.ToList();
+            List<TipoTarea> Dstipo = _context.TipoTareas.ToList();
+
+
+            List<Pendiente> Dstarea = (from Tr in _context.Tarea
+                                       join ti in _context.TipoTareas
+                                       on Tr.TipoTareaId equals ti.Id
+                                       join pr in _context.Prioridades
+                                       on Tr.PrioridadId equals pr.Id
+                                       where Tr.EstadoId >= 0 && Tr.EstadoId <= 100
+                                       select new Pendiente
+                                       {
+                                           Id = Tr.Id,
+                                           TipoTarea = ti.Descripcion,
+                                           Prioridad = pr.Descripcion,
+                                           Nombre = Tr.Nombre,
+                                           FechaAlta = Tr.FechaAlta.ToString("yyyy-MM-dd"),
+                                           FechaVencimiento = Tr.FechaVencimiento.ToString("yyyy-MM-dd HH:mm"),
+                                           Observacion = Tr.Observacion
+
+
+                                       }).ToList();
+
+            return View(Dstarea);
+        }
+
+
+        public async Task<IActionResult> Realizado(int? id)
+        {
+            var tarea = await _context.Tarea.FindAsync(id);
+            tarea.EstadoId = 600;
+            _context.Tarea.Update(tarea);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Pendientes));
+        }
+        public async Task<IActionResult> Rechazado(int? id)
+        {
+            var tarea = await _context.Tarea.FindAsync(id);
+            tarea.EstadoId = 900;
+            _context.Tarea.Update(tarea);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Pendientes));
+        }
+
+
+        #endregion
+
+
+        // GET: Tareas/Details/5
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var tarea = await _context.Tarea
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (tarea == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(tarea);
+        //}
+
+
+
+
+
+        //// GET: Tareas/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var tarea = await _context.Tarea
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (tarea == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(tarea);
+        //}
+
+
     }
 }

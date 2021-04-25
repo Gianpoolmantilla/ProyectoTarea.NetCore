@@ -33,7 +33,7 @@
                     <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
                 </div>
                   
-                </div>
+            </div>
                 <div class="form-group">
                     <div class="control-label col-md-2">Tipo De Tarea</div>
                     <div class="col-4">
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="control-label col-md-2">Observacion</div>
+                    <div class="control-label col-md-2">Observación</div>
                     <div class="col-md-12">
                         @Html.TextAreaFor(model => model.Observacion, new { cols = 600, rows = 10, @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
@@ -64,10 +64,10 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-12">
                             <input type="submit" value="Guardar" class="btn btn-success" />
-                            <button class="btn btn-danger" value="atras">
+                            @*<button class="btn btn-danger" value="atras">
                                 @Html.ActionLink("Atras", "Index", null, "Tarea", htmlAttributes: new { @class = "text-white" })
 
-                            </button>
+                            </button>*@
                         </div>
                     </div>
                 </div>
