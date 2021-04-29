@@ -57,6 +57,10 @@ namespace ProcesoTareas.Controllers
         {
             if (ModelState.IsValid)
             {
+                prioridad.FechaAlta = DateTime.Now;
+                prioridad.FechaMod = DateTime.Now;
+                prioridad.Debaja = "N";
+                prioridad.UserId = "";
                 _context.Add(prioridad);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -79,10 +83,8 @@ namespace ProcesoTareas.Controllers
             }
             return View(prioridad);
         }
-
-        // POST: Prioridads/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Descripcion,Debaja,FechaAlta,UserId,FechaMod")] Prioridad prioridad)
@@ -96,6 +98,7 @@ namespace ProcesoTareas.Controllers
             {
                 try
                 {
+                    prioridad.FechaMod = DateTime.Now;
                     _context.Update(prioridad);
                     await _context.SaveChangesAsync();
                 }
@@ -143,7 +146,15 @@ namespace ProcesoTareas.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        public async Task<IActionResult> DarBaja(int? id)
+        {
+            var tipoTarea = await _context.Prioridades.FindAsync(id);
+            tipoTarea.FechaMod = DateTime.Now;
+            tipoTarea.Debaja = "S";
+            _context.Prioridades.Update(tipoTarea);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         private bool PrioridadExists(int id)
         {
             return _context.Prioridades.Any(e => e.Id == id);

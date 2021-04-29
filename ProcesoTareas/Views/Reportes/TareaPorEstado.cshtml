@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<ProcesoTareas.Models.Reportes>
 @{
     ViewData["Title"] = "TareaPorEstado";
+    List<SelectListItem> listaEstado = (List<SelectListItem>)ViewBag.fkestado;
 }
 
 <h2>Tarea Por Estado</h2>
@@ -14,11 +15,14 @@
                 <div class="control-label col-md-2">Estado</div>
                 <div class="col-6">
                     <input type="text" name="estado" id="estado" class="form-control" />
+                    @*@Html.DropDownList("estado", listaEstado as IEnumerable<SelectListItem>, "Seleccione un prioridad..", new { id = "normalDropwn2", @class = "form-control" })*@
+
+                    @*@Html.DropDownListFor(model => model.Estado, listaEstado, "Seleccione un tipo..", new { id = "normalDropwn", @class = "form-control" })*@
                     <span class="text-danger"></span>
                 </div>
 
             </div>
-         
+
             <div class="form-group">
                 <div class="row">
 
@@ -35,11 +39,6 @@
 
 
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-12">
-                    <input type="submit" value="Buscar" class="btn btn-success" />
-                </div>
-            </div>
 
 
 
@@ -47,6 +46,11 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-12">
+            <input type="submit" value="Buscar" class="btn btn-success" />
+        </div>
+    </div>
 
     <table class="table">
         <tr>

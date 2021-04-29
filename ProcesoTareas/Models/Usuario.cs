@@ -9,6 +9,8 @@ namespace ProcesoTareas.Models
 {
     public class Usuario : Iauditoria
     {
+        [Key]
+        
         public int Id { get; set; }
         [Required(ErrorMessage = "este campo Nombre es requerido")]
         public string Nombre { get; set; }
@@ -27,6 +29,6 @@ namespace ProcesoTareas.Models
         public string UserId { get; set; }
         public DateTime FechaMod { get; set; }
 
-        public string loginErrorMessage { get; set; }
+        public string LoginErrorMessage { get; set; }
     }
 }

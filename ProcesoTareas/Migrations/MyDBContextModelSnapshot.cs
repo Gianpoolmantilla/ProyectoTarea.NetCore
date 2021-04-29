@@ -29,29 +29,44 @@ namespace ProcesoTareas.Migrations
                     b.Property<int?>("CodEstado")
                         .HasColumnType("int");
 
-                    b.Property<string>("Debaja")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Descripcion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaAlta")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("FechaMod")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("TareaId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TareaId");
-
                     b.ToTable("Estados");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CodEstado = 0,
+                            Descripcion = "Alta"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CodEstado = 50,
+                            Descripcion = "Modificacion"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CodEstado = 100,
+                            Descripcion = "Pendiente"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CodEstado = 600,
+                            Descripcion = "Realizado"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CodEstado = 900,
+                            Descripcion = "Rechazado"
+                        });
                 });
 
             modelBuilder.Entity("ProcesoTareas.Models.Prioridad", b =>
@@ -73,15 +88,10 @@ namespace ProcesoTareas.Migrations
                     b.Property<DateTime>("FechaMod")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("TareaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TareaId");
 
                     b.ToTable("Prioridades");
                 });
@@ -96,7 +106,7 @@ namespace ProcesoTareas.Migrations
                     b.Property<string>("Debaja")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EstadoId")
+                    b.Property<int>("EstadoId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FechaAlta")
@@ -114,18 +124,22 @@ namespace ProcesoTareas.Migrations
                     b.Property<string>("Observacion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PrioridadId")
-                        .IsRequired()
+                    b.Property<int>("PrioridadId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TipoTareaId")
-                        .IsRequired()
+                    b.Property<int>("TipoTareaId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EstadoId");
+
+                    b.HasIndex("PrioridadId");
+
+                    b.HasIndex("TipoTareaId");
 
                     b.ToTable("Tarea");
                 });
@@ -149,15 +163,10 @@ namespace ProcesoTareas.Migrations
                     b.Property<DateTime>("FechaMod")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("TareaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TareaId");
 
                     b.ToTable("TipoTareas");
                 });
@@ -181,6 +190,9 @@ namespace ProcesoTareas.Migrations
                     b.Property<DateTime>("FechaMod")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("LoginErrorMessage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -196,42 +208,65 @@ namespace ProcesoTareas.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("loginErrorMessage")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
-                });
 
-            modelBuilder.Entity("ProcesoTareas.Models.Estado", b =>
-                {
-                    b.HasOne("ProcesoTareas.Models.Tarea", null)
-                        .WithMany("Estado")
-                        .HasForeignKey("TareaId");
-                });
-
-            modelBuilder.Entity("ProcesoTareas.Models.Prioridad", b =>
-                {
-                    b.HasOne("ProcesoTareas.Models.Tarea", null)
-                        .WithMany("Prioridad")
-                        .HasForeignKey("TareaId");
-                });
-
-            modelBuilder.Entity("ProcesoTareas.Models.TipoTarea", b =>
-                {
-                    b.HasOne("ProcesoTareas.Models.Tarea", null)
-                        .WithMany("TipoTarea")
-                        .HasForeignKey("TareaId");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Debaja = "",
+                            Email = "soporte@mail.com",
+                            FechaAlta = new DateTime(2021, 4, 28, 21, 52, 45, 944, DateTimeKind.Local).AddTicks(6029),
+                            FechaMod = new DateTime(2021, 4, 28, 21, 52, 45, 946, DateTimeKind.Local).AddTicks(8926),
+                            Nombre = "Administrador",
+                            NombreuserId = "admin",
+                            Password = "123",
+                            UserId = ""
+                        });
                 });
 
             modelBuilder.Entity("ProcesoTareas.Models.Tarea", b =>
                 {
+                    b.HasOne("ProcesoTareas.Models.Estado", "Estado")
+                        .WithMany("Tarea")
+                        .HasForeignKey("EstadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProcesoTareas.Models.Prioridad", "Prioridad")
+                        .WithMany("Tarea")
+                        .HasForeignKey("PrioridadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProcesoTareas.Models.TipoTarea", "TipoTarea")
+                        .WithMany("Tarea")
+                        .HasForeignKey("TipoTareaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Estado");
 
                     b.Navigation("Prioridad");
 
                     b.Navigation("TipoTarea");
+                });
+
+            modelBuilder.Entity("ProcesoTareas.Models.Estado", b =>
+                {
+                    b.Navigation("Tarea");
+                });
+
+            modelBuilder.Entity("ProcesoTareas.Models.Prioridad", b =>
+                {
+                    b.Navigation("Tarea");
+                });
+
+            modelBuilder.Entity("ProcesoTareas.Models.TipoTarea", b =>
+                {
+                    b.Navigation("Tarea");
                 });
 #pragma warning restore 612, 618
         }

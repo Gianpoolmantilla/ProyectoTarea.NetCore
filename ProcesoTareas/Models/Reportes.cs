@@ -20,7 +20,7 @@ namespace ProcesoTareas.Models
         public string FechaAlta { get; set; }
         public string FechaVencimiento { get; set; }
 
-        public List<Estado> Estados { get; set; }
+        public string Estados { get; set; }
 
     }
 }

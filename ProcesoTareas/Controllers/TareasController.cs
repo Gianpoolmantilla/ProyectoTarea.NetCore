@@ -19,35 +19,60 @@ namespace ProcesoTareas.Controllers
             _context = context;
         }
 
-        // GET: Tareas
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Tarea.ToListAsync());
-        //}
-
-
         #region Crear
 
         // GET: Tareas/Create
         public IActionResult Create()
         {
-            Tarea Coleccion = new Tarea();
-            //Coleccion.FechaVencimiento = DateTime.Now.AddDays(+1);
-            Coleccion.Prioridad = _context.Prioridades.ToList();
-            Coleccion.TipoTarea = _context.TipoTareas.ToList();
-            return View(Coleccion);
+         
+            var priori = (from p in _context.Prioridades
+                          select new Prioridad
+                          {
+                              Id = p.Id,
+                              Descripcion = p.Descripcion
+                          }).ToList();
+
+            var tipota = (from t in _context.TipoTareas
+                          select new TipoTarea
+                          {
+                              Id = t.Id,
+                              Descripcion = t.Descripcion
+                          }).ToList();
+
+            List<SelectListItem> itemsPrioridad = priori.ConvertAll(p =>
+            {
+                return new SelectListItem()
+                {
+                    Text = p.Descripcion.ToString(),
+                    Value = p.Id.ToString(),
+                    Selected = false
+                };
+            });
+
+            List<SelectListItem> itemsTipoTarea = tipota.ConvertAll(t =>
+            {
+                return new SelectListItem()
+                {
+                    Text = t.Descripcion.ToString(),
+                    Value = t.Id.ToString(),
+                    Selected = false
+                };
+            });
+
+
+            ViewBag.itemsPrioridad = itemsPrioridad;
+            ViewBag.itemsTipoT = itemsTipoTarea;
+            return View();
         }
 
-        // POST: Tareas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,TipoTareaId,Observacion,PrioridadId,EstadoId,Debaja,FechaAlta,UserId,FechaMod,FechaVencimiento")] Tarea tarea)
         {
             if (ModelState.IsValid)
             {
-                tarea.EstadoId = 100;
+                                
+                tarea.EstadoId = (int)CambioEstado.pendiente; //deja en estado pendiente
                 tarea.FechaAlta = DateTime.Now;
                 tarea.FechaMod = DateTime.Now;
                 tarea.Debaja = "N";
@@ -106,8 +131,49 @@ namespace ProcesoTareas.Controllers
             }
 
             var tarea = await _context.Tarea.FindAsync(id);
-            tarea.Prioridad = _context.Prioridades.ToList();
-            tarea.TipoTarea = _context.TipoTareas.ToList();
+            /// revisar
+            //tarea.Prioridad = _context.Prioridades.ToList();
+            //tarea.TipoTarea = _context.TipoTareas.ToList();
+
+            var priori = (from p in _context.Prioridades
+                          select new Prioridad
+                          {
+                              Id = p.Id,
+                              Descripcion = p.Descripcion
+                          }).ToList();
+
+            var tipota = (from t in _context.TipoTareas
+                          select new TipoTarea
+                          {
+                              Id = t.Id,
+                              Descripcion = t.Descripcion
+                          }).ToList();
+
+            List<SelectListItem> itemsPrioridad = priori.ConvertAll(p =>
+            {
+                return new SelectListItem()
+                {
+                    Text = p.Descripcion.ToString(),
+                    Value = p.Id.ToString(),
+                    Selected = false
+                };
+            });
+
+            List<SelectListItem> itemsTipoTarea = tipota.ConvertAll(t =>
+            {
+                return new SelectListItem()
+                {
+                    Text = t.Descripcion.ToString(),
+                    Value = t.Id.ToString(),
+                    Selected = false
+                };
+            });
+
+
+            ViewBag.itemsPrioridad = itemsPrioridad;
+            ViewBag.itemsTipoT = itemsTipoTarea;
+
+
 
             if (tarea == null)
             {
@@ -115,10 +181,7 @@ namespace ProcesoTareas.Controllers
             }
             return View(tarea);
         }
-
-        // POST: Tareas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,TipoTareaId,Observacion,PrioridadId,EstadoId,Debaja,FechaAlta,UserId,FechaMod")] Tarea tarea)
@@ -132,7 +195,7 @@ namespace ProcesoTareas.Controllers
             {
                 try
                 {
-                    tarea.EstadoId = 50;
+                    tarea.EstadoId = (int)CambioEstado.modificacion; //estado modificacion
                     _context.Update(tarea);
                     await _context.SaveChangesAsync();
                 }
@@ -184,7 +247,9 @@ namespace ProcesoTareas.Controllers
                                        on Tr.TipoTareaId equals ti.Id
                                        join pr in _context.Prioridades
                                        on Tr.PrioridadId equals pr.Id
-                                       where Tr.EstadoId >= 0 && Tr.EstadoId <= 100
+                                       join est in _context.Estados
+                                       on Tr.EstadoId equals est.Id 
+                                       where est.CodEstado >= 0 && est.CodEstado <= 100
                                        select new Pendiente
                                        {
                                            Id = Tr.Id,
@@ -205,7 +270,8 @@ namespace ProcesoTareas.Controllers
         public async Task<IActionResult> Realizado(int? id)
         {
             var tarea = await _context.Tarea.FindAsync(id);
-            tarea.EstadoId = 600;
+            tarea.FechaMod = DateTime.Now;
+            tarea.EstadoId = (int)CambioEstado.realizado; // estado realizado
             _context.Tarea.Update(tarea);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Pendientes));
@@ -213,7 +279,8 @@ namespace ProcesoTareas.Controllers
         public async Task<IActionResult> Rechazado(int? id)
         {
             var tarea = await _context.Tarea.FindAsync(id);
-            tarea.EstadoId = 900;
+            tarea.FechaMod = DateTime.Now;
+            tarea.EstadoId = (int)CambioEstado.rechazado; // estado Rechazado
             _context.Tarea.Update(tarea);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Pendientes));
@@ -223,46 +290,7 @@ namespace ProcesoTareas.Controllers
         #endregion
 
 
-        // GET: Tareas/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var tarea = await _context.Tarea
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (tarea == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(tarea);
-        //}
-
-
-
-
-
-        //// GET: Tareas/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var tarea = await _context.Tarea
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (tarea == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(tarea);
-        //}
-
+  
 
     }
 }

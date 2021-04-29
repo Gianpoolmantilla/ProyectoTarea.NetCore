@@ -1,31 +1,25 @@
 ﻿@model IEnumerable<ProcesoTareas.Models.TipoTarea>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tipo De Tarea";
 }
 
-<h1>Index</h1>
+<h2>Tipo de Tareas</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <button class="btn btn-outline-primary text-white" value="Editar">
+        <a asp-action="Create">Nuevo</a>
+    </button>
+
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Debaja)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaAlta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaMod)
             </th>
             <th></th>
         </tr>
@@ -34,24 +28,20 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Debaja)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaAlta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaMod)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <button class="btn btn-secondary text-white" value="Editar">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="text-white">Editar</a>
+                </button>
+                          
+                <form asp-action="DarBaja" asp-route-id="@item.Id">
+                    <input type="submit" value="DarBaja" class="btn btn-dark" />
+                </form>
+
             </td>
         </tr>
 }

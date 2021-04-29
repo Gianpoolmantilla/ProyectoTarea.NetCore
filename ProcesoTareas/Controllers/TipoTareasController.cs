@@ -57,6 +57,10 @@ namespace ProcesoTareas.Controllers
         {
             if (ModelState.IsValid)
             {
+                tipoTarea.FechaAlta = DateTime.Now;
+                tipoTarea.FechaMod = DateTime.Now;
+                tipoTarea.Debaja = "N";
+                tipoTarea.UserId = "";
                 _context.Add(tipoTarea);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -96,6 +100,7 @@ namespace ProcesoTareas.Controllers
             {
                 try
                 {
+                    tipoTarea.FechaMod = DateTime.Now;
                     _context.Update(tipoTarea);
                     await _context.SaveChangesAsync();
                 }
@@ -140,6 +145,16 @@ namespace ProcesoTareas.Controllers
         {
             var tipoTarea = await _context.TipoTareas.FindAsync(id);
             _context.TipoTareas.Remove(tipoTarea);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> DarBaja(int? id)
+        {
+            var tipoTarea = await _context.TipoTareas.FindAsync(id);
+            tipoTarea.FechaMod = DateTime.Now;
+            tipoTarea.Debaja = "S";
+            _context.TipoTareas.Update(tipoTarea);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

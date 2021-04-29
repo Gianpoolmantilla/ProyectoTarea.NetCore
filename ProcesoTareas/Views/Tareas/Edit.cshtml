@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Edit";
     Layout = "_Layout";
+
+    List<SelectListItem> PrioridadId = (List<SelectListItem>)ViewBag.itemsPrioridad;
+
+    List<SelectListItem> TipoTareaId = (List<SelectListItem>)ViewBag.itemsTipoT;
 }
 
 
@@ -32,16 +36,14 @@
             <div class="form-group">
                 <div class="control-label col-md-2">Tipo De Tarea</div>
                 <div class="col-4">
-                    @Html.DropDownListFor(model => model.TipoTareaId, new SelectList(Model.TipoTarea, "Id", "Descripcion"),
-                       new { id = "normalDropwn", @class = "form-control" })
+                    @Html.DropDownListFor(model => model.TipoTareaId, TipoTareaId,new { id = "normalDropwn", @class = "form-control" })
                     <span asp-validation-for="TipoTareaId" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="control-label col-md-2">Prioridad</div>
                 <div class="col-4">
-                    @Html.DropDownListFor(model => model.PrioridadId, new SelectList(Model.Prioridad, "Id", "Descripcion"), "Seleccione un prioridad..",
-                       new { id = "normalDropwn2", @class = "form-control" })
+                    @Html.DropDownListFor(model => model.PrioridadId, PrioridadId, "Seleccione un prioridad..",new { id = "normalDropwn2", @class = "form-control" })
                     <span asp-validation-for="PrioridadId" class="text-danger"></span>
 
                 </div>

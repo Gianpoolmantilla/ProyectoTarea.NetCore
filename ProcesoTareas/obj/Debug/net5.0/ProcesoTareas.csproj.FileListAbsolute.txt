@@ -345,8 +345,8 @@ E:\Users\work\Desktop\PROYECTOS\proyectos c#\ProcesoTareas - copia (2)\obj\Debug
 E:\Users\work\Desktop\PROYECTOS\proyectos c#\ProcesoTareas - copia (2)\obj\Debug\net5.0\ProcesoTareas.pdb
 E:\Users\work\Desktop\PROYECTOS\proyectos c#\ProcesoTareas - copia (2)\obj\Debug\net5.0\ProcesoTareas.genruntimeconfig.cache
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\appsettings.Development.json
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\ProcesoTareas.exe
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\appsettings.json
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\ProcesoTareas.exe
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\ProcesoTareas.deps.json
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\ProcesoTareas.runtimeconfig.json
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\ProcesoTareas.runtimeconfig.dev.json
@@ -461,7 +461,6 @@ E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\ne
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.csprojAssemblyReference.cache
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.GeneratedMSBuildEditorConfig.editorconfig
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.AssemblyInfoInputs.cache
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.AssemblyInfo.cs
@@ -475,11 +474,6 @@ E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\ne
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.TagHelpers.input.cache
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.TagHelpers.output.cache
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.RazorCoreGenerate.cache
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Estado\Create.cshtml.g.cs
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Estado\Delete.cshtml.g.cs
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Estado\Details.cshtml.g.cs
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Estado\Edit.cshtml.g.cs
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Estado\Index.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
@@ -494,6 +488,8 @@ E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\ne
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Tareas\Create.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Tareas\Edit.cshtml.g.cs
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Tareas\Modificacion.cshtml.g.cs
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Tareas\Pendientes.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\TipoTareas\Create.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\TipoTareas\Delete.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\TipoTareas\Details.cshtml.g.cs
@@ -514,5 +510,4 @@ E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\ne
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ref\ProcesoTareas.dll
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.pdb
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.genruntimeconfig.cache
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Tareas\Pendientes.cshtml.g.cs
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Tareas\Modificacion.cshtml.g.cs
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.csprojAssemblyReference.cache
