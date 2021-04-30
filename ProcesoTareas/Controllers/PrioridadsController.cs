@@ -21,7 +21,15 @@ namespace ProcesoTareas.Controllers
         // GET: Prioridads
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Prioridades.ToListAsync());
+            var recuperoActivos = from tt in _context.Prioridades
+                                  where tt.Debaja == "N"
+                                  select new Prioridad
+                                  {
+                                      Id = tt.Id,
+                                      Descripcion = tt.Descripcion
+                                  };
+
+            return View(recuperoActivos);
         }
 
         // GET: Prioridads/Details/5

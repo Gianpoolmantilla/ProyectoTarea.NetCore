@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProcesoTareas.Models;
 
 namespace ProcesoTareas.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210430021006_ex")]
+    partial class ex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,8 +108,7 @@ namespace ProcesoTareas.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Debaja")
-                        .HasMaxLength(1)
-                        .HasColumnType("nvarchar(1)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EstadoId")
                         .HasColumnType("int");
@@ -155,8 +156,7 @@ namespace ProcesoTareas.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Debaja")
-                        .HasMaxLength(1)
-                        .HasColumnType("nvarchar(1)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
@@ -184,8 +184,7 @@ namespace ProcesoTareas.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Debaja")
-                        .HasMaxLength(1)
-                        .HasColumnType("nvarchar(1)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -224,8 +223,8 @@ namespace ProcesoTareas.Migrations
                             Id = 1,
                             Debaja = "",
                             Email = "soporte@mail.com",
-                            FechaAlta = new DateTime(2021, 4, 29, 23, 12, 23, 61, DateTimeKind.Local).AddTicks(5264),
-                            FechaMod = new DateTime(2021, 4, 29, 23, 12, 23, 63, DateTimeKind.Local).AddTicks(5140),
+                            FechaAlta = new DateTime(2021, 4, 29, 23, 10, 5, 390, DateTimeKind.Local).AddTicks(6665),
+                            FechaMod = new DateTime(2021, 4, 29, 23, 10, 5, 392, DateTimeKind.Local).AddTicks(8490),
                             Nombre = "Administrador",
                             NombreuserId = "admin",
                             Password = "123",

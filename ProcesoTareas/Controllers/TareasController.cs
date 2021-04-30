@@ -26,6 +26,7 @@ namespace ProcesoTareas.Controllers
         {
          
             var priori = (from p in _context.Prioridades
+                          where p.Debaja == "N"
                           select new Prioridad
                           {
                               Id = p.Id,
@@ -33,6 +34,7 @@ namespace ProcesoTareas.Controllers
                           }).ToList();
 
             var tipota = (from t in _context.TipoTareas
+                          where t.Debaja == "N"
                           select new TipoTarea
                           {
                               Id = t.Id,
@@ -106,6 +108,7 @@ namespace ProcesoTareas.Controllers
                                           on Tr.TipoTareaId equals ti.Id
                                           join pr in _context.Prioridades
                                           on Tr.PrioridadId equals pr.Id
+                                          where Tr.Debaja == "N"
                                           select new Modificacion
                                           {
                                               Id = Tr.Id,
@@ -226,6 +229,16 @@ namespace ProcesoTareas.Controllers
             return RedirectToAction(nameof(Modificacion));
         }
 
+        public async Task<IActionResult> DarBaja(int? id)
+        {
+            var Tarea = await _context.Tarea.FindAsync(id);
+            Tarea.FechaMod = DateTime.Now;
+            Tarea.Debaja = "S";
+            _context.Tarea.Update(Tarea);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Modificacion));
+        }
+
         private bool TareaExists(int id)
         {
             return _context.Tarea.Any(e => e.Id == id);
@@ -249,7 +262,8 @@ namespace ProcesoTareas.Controllers
                                        on Tr.PrioridadId equals pr.Id
                                        join est in _context.Estados
                                        on Tr.EstadoId equals est.Id 
-                                       where est.CodEstado >= 0 && est.CodEstado <= 100
+                                       where Tr.Debaja == "N" &&
+                                       est.CodEstado >= 0 && est.CodEstado <= 100
                                        select new Pendiente
                                        {
                                            Id = Tr.Id,

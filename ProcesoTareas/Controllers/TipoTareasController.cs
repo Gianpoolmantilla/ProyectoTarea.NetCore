@@ -21,7 +21,16 @@ namespace ProcesoTareas.Controllers
         // GET: TipoTareas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TipoTareas.ToListAsync());
+            var recuperoActivos = from tt in _context.TipoTareas
+                                  where tt.Debaja == "N"
+                                  select new TipoTarea
+                                  {
+                                      Id = tt.Id,
+                                      Descripcion = tt.Descripcion
+                                  };
+                                
+
+            return View(recuperoActivos);
         }
 
         // GET: TipoTareas/Details/5

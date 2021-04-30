@@ -26,7 +26,7 @@ namespace ProcesoTareas.Models
         //forenkey
         public int EstadoId { get; set; }
         public  Estado Estado { get; set; }
-
+        [StringLength(1)]
         public string Debaja { get; set; }
         public DateTime FechaAlta { get; set; }
         public string UserId { get; set ; }

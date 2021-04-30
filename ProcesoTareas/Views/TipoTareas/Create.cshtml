@@ -24,7 +24,10 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    @*<a asp-action="Index">Back to List</a>*@
+    <button class="btn btn-danger" value="atras">
+        @Html.ActionLink("Atras", "Index", null, "Tarea", htmlAttributes: new { @class = "text-white" })
+    </button>
 </div>
 
 @section Scripts {

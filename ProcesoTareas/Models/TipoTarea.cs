@@ -12,7 +12,7 @@ namespace ProcesoTareas.Models
         public int Id { get; set; }
         [Required]
         public string Descripcion { get; set; }
-
+        [StringLength(1)]
         public string Debaja { get ; set ; }
         public DateTime FechaAlta { get ; set; }
         public string UserId { get ; set; }

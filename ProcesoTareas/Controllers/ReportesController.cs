@@ -70,7 +70,7 @@ namespace ProcesoTareas.Controllers
                               join ti in Dstipo on tr.TipoTareaId equals ti.Id
                               join pri in Dsprioridad on tr.PrioridadId equals pri.Id
                               join est in DsStado on tr.EstadoId equals est.Id
-                              where tr.EstadoId == estado &&
+                              where tr.Debaja == "N" && tr.EstadoId == estado &&
                               (tr.FechaAlta >= DateTime.Parse(fechaD) && tr.FechaAlta <= DateTime.Parse(fechaH))
 
                               select new Reportes
@@ -91,7 +91,7 @@ namespace ProcesoTareas.Controllers
                               join ti in Dstipo on tr.TipoTareaId equals ti.Id
                               join pri in Dsprioridad on tr.PrioridadId equals pri.Id
                               join est in DsStado on tr.EstadoId equals est.Id
-                              where (tr.FechaAlta >= DateTime.Parse(fechaD) && tr.FechaAlta <= DateTime.Parse(fechaH))
+                              where tr.Debaja == "N" && (tr.FechaAlta >= DateTime.Parse(fechaD) && tr.FechaAlta <= DateTime.Parse(fechaH))
 
                               select new Reportes
                               {

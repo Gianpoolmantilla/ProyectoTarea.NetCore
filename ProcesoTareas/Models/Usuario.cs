@@ -23,7 +23,7 @@ namespace ProcesoTareas.Models
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "este campo es requerido")]
         public string Password { get; set; }
-
+        [StringLength(1)]
         public string Debaja { get; set ; }
         public DateTime FechaAlta { get; set; }
         public string UserId { get; set; }
