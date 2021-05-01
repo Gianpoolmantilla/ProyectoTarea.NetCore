@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Session;
+using ProcesoTareas.Services;
 
 namespace ProcesoTareas
 {
@@ -27,11 +28,11 @@ namespace ProcesoTareas
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDistributedMemoryCache();
-            services.AddSession();
-
+            services.AddSession();           
             services.AddControllersWithViews();
             services.AddDbContext<MyDBContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
-
+            services.AddScoped<ITareaService,TareaService>();       
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

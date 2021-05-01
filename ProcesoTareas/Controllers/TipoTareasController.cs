@@ -19,7 +19,7 @@ namespace ProcesoTareas.Controllers
         }
 
         // GET: TipoTareas
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var recuperoActivos = from tt in _context.TipoTareas
                                   where tt.Debaja == "N"

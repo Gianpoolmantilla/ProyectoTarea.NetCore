@@ -7,63 +7,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProcesoTareas.Models;
 using ProcesoTareas.Models.ViewModelEstados;
+using ProcesoTareas.Services;
 
 namespace ProcesoTareas.Controllers
 {
     public class TareasController : Controller
     {
         private readonly MyDBContext _context;
+        private readonly TareaService _tareaService;
 
         public TareasController(MyDBContext context)
         {
             _context = context;
+            _tareaService = new TareaService();
+
         }
+        //public TareasController(TareaService tareaService)
+        //{
+        //    _tareaService = tareaService;
+        //}
+
 
         #region Crear
 
         // GET: Tareas/Create
         public IActionResult Create()
-        {
-         
-            var priori = (from p in _context.Prioridades
-                          where p.Debaja == "N"
-                          select new Prioridad
-                          {
-                              Id = p.Id,
-                              Descripcion = p.Descripcion
-                          }).ToList();
-
-            var tipota = (from t in _context.TipoTareas
-                          where t.Debaja == "N"
-                          select new TipoTarea
-                          {
-                              Id = t.Id,
-                              Descripcion = t.Descripcion
-                          }).ToList();
-
-            List<SelectListItem> itemsPrioridad = priori.ConvertAll(p =>
-            {
-                return new SelectListItem()
-                {
-                    Text = p.Descripcion.ToString(),
-                    Value = p.Id.ToString(),
-                    Selected = false
-                };
-            });
-
-            List<SelectListItem> itemsTipoTarea = tipota.ConvertAll(t =>
-            {
-                return new SelectListItem()
-                {
-                    Text = t.Descripcion.ToString(),
-                    Value = t.Id.ToString(),
-                    Selected = false
-                };
-            });
-
-
-            ViewBag.itemsPrioridad = itemsPrioridad;
-            ViewBag.itemsTipoT = itemsTipoTarea;
+        {           
+            ViewBag.itemsPrioridad = _tareaService.GetFkPrioridad(_context.Prioridades);
+            ViewBag.itemsTipoT = _tareaService.GetFkTipoTarea(_context.TipoTareas);
             return View();
         }
 
@@ -99,28 +70,7 @@ namespace ProcesoTareas.Controllers
 
         public IActionResult Modificacion()
         {
-            List<Prioridad> Dsprioridad = _context.Prioridades.ToList();
-            List<TipoTarea> Dstipo = _context.TipoTareas.ToList();
-
-
-            List<Modificacion> Dstarea = (from Tr in _context.Tarea
-                                          join ti in _context.TipoTareas
-                                          on Tr.TipoTareaId equals ti.Id
-                                          join pr in _context.Prioridades
-                                          on Tr.PrioridadId equals pr.Id
-                                          where Tr.Debaja == "N"
-                                          select new Modificacion
-                                          {
-                                              Id = Tr.Id,
-                                              TipoTarea = ti.Descripcion,
-                                              Prioridad = pr.Descripcion,
-                                              Nombre = Tr.Nombre,
-                                              FechaAlta = Tr.FechaAlta.ToString("yyyy-MM-dd HH:mm"),
-                                              FechaVencimiento = Tr.FechaVencimiento.ToString("yyyy-MM-dd"),
-                                              Observacion = Tr.Observacion
-
-
-                                          }).ToList();
+            List<Modificacion> Dstarea = _tareaService.GetModificacion(_context);     
 
             return View(Dstarea);
         }
@@ -133,50 +83,9 @@ namespace ProcesoTareas.Controllers
                 return NotFound();
             }
 
-            var tarea = await _context.Tarea.FindAsync(id);
-            /// revisar
-            //tarea.Prioridad = _context.Prioridades.ToList();
-            //tarea.TipoTarea = _context.TipoTareas.ToList();
-
-            var priori = (from p in _context.Prioridades
-                          select new Prioridad
-                          {
-                              Id = p.Id,
-                              Descripcion = p.Descripcion
-                          }).ToList();
-
-            var tipota = (from t in _context.TipoTareas
-                          select new TipoTarea
-                          {
-                              Id = t.Id,
-                              Descripcion = t.Descripcion
-                          }).ToList();
-
-            List<SelectListItem> itemsPrioridad = priori.ConvertAll(p =>
-            {
-                return new SelectListItem()
-                {
-                    Text = p.Descripcion.ToString(),
-                    Value = p.Id.ToString(),
-                    Selected = false
-                };
-            });
-
-            List<SelectListItem> itemsTipoTarea = tipota.ConvertAll(t =>
-            {
-                return new SelectListItem()
-                {
-                    Text = t.Descripcion.ToString(),
-                    Value = t.Id.ToString(),
-                    Selected = false
-                };
-            });
-
-
-            ViewBag.itemsPrioridad = itemsPrioridad;
-            ViewBag.itemsTipoT = itemsTipoTarea;
-
-
+            var tarea = await _context.Tarea.FindAsync(id);     
+            ViewBag.itemsPrioridad = _tareaService.GetFkPrioridad(_context.Prioridades); 
+            ViewBag.itemsTipoT = _tareaService.GetFkTipoTarea(_context.TipoTareas);
 
             if (tarea == null)
             {
@@ -251,31 +160,7 @@ namespace ProcesoTareas.Controllers
 
         public IActionResult Pendientes()
         {
-            List<Prioridad> Dsprioridad = _context.Prioridades.ToList();
-            List<TipoTarea> Dstipo = _context.TipoTareas.ToList();
-
-
-            List<Pendiente> Dstarea = (from Tr in _context.Tarea
-                                       join ti in _context.TipoTareas
-                                       on Tr.TipoTareaId equals ti.Id
-                                       join pr in _context.Prioridades
-                                       on Tr.PrioridadId equals pr.Id
-                                       join est in _context.Estados
-                                       on Tr.EstadoId equals est.Id 
-                                       where Tr.Debaja == "N" &&
-                                       est.CodEstado >= 0 && est.CodEstado <= 100
-                                       select new Pendiente
-                                       {
-                                           Id = Tr.Id,
-                                           TipoTarea = ti.Descripcion,
-                                           Prioridad = pr.Descripcion,
-                                           Nombre = Tr.Nombre,
-                                           FechaAlta = Tr.FechaAlta.ToString("yyyy-MM-dd"),
-                                           FechaVencimiento = Tr.FechaVencimiento.ToString("yyyy-MM-dd HH:mm"),
-                                           Observacion = Tr.Observacion
-
-
-                                       }).ToList();
+            List<Pendiente> Dstarea = _tareaService.GetPendiente(_context);
 
             return View(Dstarea);
         }
