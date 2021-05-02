@@ -7,15 +7,19 @@
 <h2>Tarea Por Estado</h2>
 
 <hr />
-<form asp-action="TareaPorEstado">
+@using (Html.BeginForm())
+{
+
+
+    @*<form asp-action="TareaPorEstado">*@
     <div class="row">
         <div class="col-md-12">
 
             <div class="form-group">
                 <div class="control-label col-md-2">Estado</div>
-                <div class="col-6">
-                    <input type="text" name="estado" id="estado" class="form-control" />
-                    @*@Html.DropDownList("estado", listaEstado as IEnumerable<SelectListItem>, "Seleccione un prioridad..", new { id = "normalDropwn2", @class = "form-control" })*@
+                <div class="col-3">
+                    @*<input type="text" name="estado" id="estado" class="form-control" />*@
+                    @Html.DropDownList("estado", listaEstado as IEnumerable<SelectListItem>, "Seleccione un prioridad..", new { id = "normalDropwn2", @class = "form-control" })
 
                     @*@Html.DropDownListFor(model => model.Estado, listaEstado, "Seleccione un tipo..", new { id = "normalDropwn", @class = "form-control" })*@
                     <span class="text-danger"></span>
@@ -37,12 +41,6 @@
                 </div>
             </div>
 
-
-
-
-
-
-
         </div>
     </div>
 
@@ -51,7 +49,7 @@
             <input type="submit" value="Buscar" class="btn btn-success" />
         </div>
     </div>
-
+}
     <table class="table">
         <tr>
             <th>
@@ -70,6 +68,9 @@
                 Prioridad
             </th>
             <th>
+                Fecha de alta
+            </th>
+            <th>
                 Observacion
             </th>
         </tr>
@@ -78,33 +79,36 @@
             @foreach (var item in Model)
             {
 
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tarea.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estado.Descripcion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tarea.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TipoTarea.Descripcion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Prioridad.Descripcion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tarea.Observacion)
-                    </td>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarea.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarea.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoTarea.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prioridad.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarea.FechaAlta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarea.Observacion)
+        </td>
 
-                </tr>
+    </tr>
             }
 
 
         }
 
-
-
     </table>
-</form>
+
+    @*</form>*@
+

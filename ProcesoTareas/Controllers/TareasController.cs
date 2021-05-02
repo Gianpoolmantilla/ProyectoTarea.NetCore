@@ -20,19 +20,13 @@ namespace ProcesoTareas.Controllers
         {
             _context = context;
             _tareaService = new TareaService();
-
         }
-        //public TareasController(TareaService tareaService)
-        //{
-        //    _tareaService = tareaService;
-        //}
 
-
-        #region Crear
+        #region estado de creacion
 
         // GET: Tareas/Create
         public IActionResult Create()
-        {           
+        {
             ViewBag.itemsPrioridad = _tareaService.GetFkPrioridad(_context.Prioridades);
             ViewBag.itemsTipoT = _tareaService.GetFkTipoTarea(_context.TipoTareas);
             return View();
@@ -44,7 +38,6 @@ namespace ProcesoTareas.Controllers
         {
             if (ModelState.IsValid)
             {
-                                
                 tarea.EstadoId = (int)CambioEstado.pendiente; //deja en estado pendiente
                 tarea.FechaAlta = DateTime.Now;
                 tarea.FechaMod = DateTime.Now;
@@ -53,38 +46,47 @@ namespace ProcesoTareas.Controllers
                 _context.Add(tarea);
                 await _context.SaveChangesAsync();
 
-
                 if (ModelState.ErrorCount == 0)
                 {
                     return RedirectToAction(nameof(Create));
                 }
-
             }
             return View(tarea);
         }
-
         #endregion
 
 
-        #region Modificacion
+        #region estado de Modificacion
 
         public IActionResult Modificacion()
         {
-            List<Modificacion> Dstarea = _tareaService.GetModificacion(_context);     
+            ViewBag.itemsPrioridad = _tareaService.GetFkPrioridad(_context.Prioridades);
+            ViewBag.itemsTipoT = _tareaService.GetFkTipoTarea(_context.TipoTareas);
+            List<Modificacion> Dstarea = _tareaService.GetModificacion(_context,"0","0");
+
+            return View(Dstarea);
+        }
+        [HttpPost]
+        public IActionResult Modificacion(string tipoTarea, string prioridad)
+        {
+
+            ViewBag.itemsPrioridad = _tareaService.GetFkPrioridad(_context.Prioridades);
+            ViewBag.itemsTipoT = _tareaService.GetFkTipoTarea(_context.TipoTareas);
+            List<Modificacion> Dstarea = _tareaService.GetModificacion(_context, tipoTarea, prioridad);
 
             return View(Dstarea);
         }
 
         // GET: Tareas/Edit/5
         public async Task<IActionResult> Edit(int? id)
-        {  
+        {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var tarea = await _context.Tarea.FindAsync(id);     
-            ViewBag.itemsPrioridad = _tareaService.GetFkPrioridad(_context.Prioridades); 
+            var tarea = await _context.Tarea.FindAsync(id);
+            ViewBag.itemsPrioridad = _tareaService.GetFkPrioridad(_context.Prioridades);
             ViewBag.itemsTipoT = _tareaService.GetFkTipoTarea(_context.TipoTareas);
 
             if (tarea == null)
@@ -93,7 +95,7 @@ namespace ProcesoTareas.Controllers
             }
             return View(tarea);
         }
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,TipoTareaId,Observacion,PrioridadId,EstadoId,Debaja,FechaAlta,UserId,FechaMod")] Tarea tarea)
@@ -156,7 +158,7 @@ namespace ProcesoTareas.Controllers
         #endregion
 
 
-        #region Pendientes
+        #region estado Pendiente
 
         public IActionResult Pendientes()
         {
@@ -189,7 +191,7 @@ namespace ProcesoTareas.Controllers
         #endregion
 
 
-  
+
 
     }
 }

@@ -11,8 +11,7 @@ namespace ProcesoTareas.Models
         public string Debaja { get; set; }
         public DateTime FechaAlta { get; set; }
         public string UserId { get; set; }
-        public DateTime FechaMod { get; set; }
- 
+        public DateTime FechaMod { get; set; } 
 
 
     }

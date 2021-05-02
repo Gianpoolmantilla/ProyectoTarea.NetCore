@@ -31,8 +31,9 @@ namespace ProcesoTareas
             services.AddSession();           
             services.AddControllersWithViews();
             services.AddDbContext<MyDBContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
-            services.AddScoped<ITareaService,TareaService>();       
-        
+            services.AddScoped<ITareaService,TareaService>();
+            services.AddScoped<IReporteService, ReporteService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

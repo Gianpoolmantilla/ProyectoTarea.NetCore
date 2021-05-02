@@ -15,7 +15,7 @@ namespace ProcesoTareas.Services
         public List<SelectListItem> GetFkPrioridad(DbSet<Prioridad> Prioridad);
         public List<SelectListItem> GetFkTipoTarea(DbSet<TipoTarea> TipoTarea);    
         public List<Pendiente> GetPendiente(DbContext context);
-        public List<Modificacion> GetModificacion(DbContext context);
+        public List<Modificacion> GetModificacion(DbContext context, string tipoTarea, string prioridad);
 
     }
 }

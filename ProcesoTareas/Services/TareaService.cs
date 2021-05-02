@@ -91,19 +91,21 @@ namespace ProcesoTareas.Services
         }
 
 
-        public List<Modificacion> GetModificacion(DbContext context)
+        public List<Modificacion> GetModificacion(DbContext context, string tipoTarea, string prioridad)
         {
             _context = (MyDBContext)context;
+
 
             var list = (from Tr in _context.Tarea
                         join ti in _context.TipoTareas
                         on Tr.TipoTareaId equals ti.Id
                         join pr in _context.Prioridades
                         on Tr.PrioridadId equals pr.Id
-                        where Tr.Debaja == "N"
                         select new Modificacion
                         {
                             Id = Tr.Id,
+                            IdPrioridad = pr.Id.ToString(),
+                            IdTipoTarea = ti.Id.ToString(),
                             TipoTarea = ti.Descripcion,
                             Prioridad = pr.Descripcion,
                             Nombre = Tr.Nombre,
@@ -111,10 +113,17 @@ namespace ProcesoTareas.Services
                             FechaVencimiento = Tr.FechaVencimiento.ToString("yyyy-MM-dd"),
                             Observacion = Tr.Observacion
 
+                        }) ;
+            if (!string.IsNullOrEmpty(tipoTarea))
+            {
+                list = list.Where(t => t.IdTipoTarea == tipoTarea);
+            }
+            if (!string.IsNullOrEmpty(prioridad))
+            {
+                list = list.Where(p => p.IdPrioridad == prioridad);
+            }
 
-                        }).ToList();
-
-            return list;
+            return list.ToList();
         }
 
 

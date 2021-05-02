@@ -36,7 +36,17 @@ namespace ProcesoTareas.Models
 
             modelBuilder.Entity<Usuario>().HasData(
                 new Usuario { Id = 1, Nombre = "Administrador", Email = "soporte@mail.com", NombreuserId = "admin", Password = "123", Debaja = "", FechaAlta = DateTime.Now, UserId = "", FechaMod = DateTime.Now}
-                ); ; ;
+                );
+
+
+
+            modelBuilder.Entity<Tarea>().HasQueryFilter(x=> x.Debaja =="N");
+            modelBuilder.Entity<Prioridad>().HasQueryFilter(x => x.Debaja == "N");
+            modelBuilder.Entity<TipoTarea>().HasQueryFilter(x => x.Debaja == "N");
+           
+
+
+
         }
 
 

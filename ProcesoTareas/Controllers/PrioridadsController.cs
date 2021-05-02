@@ -19,7 +19,7 @@ namespace ProcesoTareas.Controllers
         }
 
         // GET: Prioridads
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var recuperoActivos = from tt in _context.Prioridades
                                   where tt.Debaja == "N"

@@ -9,8 +9,7 @@ namespace ProcesoTareas.Models
 {
     public class Usuario : Iauditoria
     {
-        [Key]
-        
+        [Key]        
         public int Id { get; set; }
         [Required(ErrorMessage = "este campo Nombre es requerido")]
         public string Nombre { get; set; }

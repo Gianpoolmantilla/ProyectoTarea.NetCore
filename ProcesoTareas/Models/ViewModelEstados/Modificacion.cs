@@ -16,5 +16,9 @@ namespace ProcesoTareas.Models.ViewModelEstados
         public string FechaAlta { get; set; }
         public string FechaVencimiento { get; set; }
 
+
+
+        public string IdPrioridad { get; set; }
+        public string IdTipoTarea { get; set; }
     }
 }
