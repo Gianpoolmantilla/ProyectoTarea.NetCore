@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Session;
 using ProcesoTareas.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace ProcesoTareas
 {
@@ -34,6 +35,14 @@ namespace ProcesoTareas
             services.AddScoped<ITareaService,TareaService>();
             services.AddScoped<IReporteService, ReporteService>();
 
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<MyDBContext>().AddErrorDescriber<ErroresCastellano>();
+            services.Configure<IdentityOptions>(opciones => 
+            {
+                opciones.Password.RequiredLength = 6;
+                opciones.Password.RequiredUniqueChars = 3;
+                opciones.Password.RequireNonAlphanumeric = false;
+            
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,14 +63,12 @@ namespace ProcesoTareas
             app.UseSession();
             app.UseRouting();
 
+            //app.UseAuthorization();
+
+            app.UseRouting();
+            app.UseAuthentication();//HERE~~~
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller=Home}/{action=Index}/{id?}");
-            //});
 
             app.UseEndpoints(endpoints =>
             {
@@ -69,6 +76,24 @@ namespace ProcesoTareas
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "Login",
+            //        pattern: "Login/{modelo?}",
+            //        defaults: new {controller="Cuentas",action="Login"});
+
+            //});
+
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Cuentas}/{action=Login}/{modelo?}");
+            //});
+
         }
     }
 }

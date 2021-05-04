@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> SignInManager
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -27,17 +31,58 @@
             </div>
         </form>*@
         <!-- Navbar-->
-        <ul class="navbar-nav d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+
+
+        <!--<ul class="navbar-nav d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">-->
                     @*<a class="dropdown-item" href="#">Settings</a>
                     <a class="dropdown-item" href="#">Activity Log</a>*@
-                    <div class="dropdown-divider"></div>
+                    <!--<div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="@Url.Action("LogOut","Login")">Logout</a>
                 </div>
             </li>
+        </ul>-->
+
+
+
+
+        <ul class="navbar-nav ml-auto">
+            <!--Si el usuario está logado hacemos que aparezca el link de cerrar sesión-->
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <li class="nav-item">
+                    <form method="post" asp-controller="Cuentas" asp-action="CerrarSesion">
+                        <button type="submit" style="width:auto"
+                                class="nav-link btn btn-link py-0">
+                            Logout @User.Identity.Name
+                        </button>
+                    </form>
+                </li>
+
+            }
+            else
+            {
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Cuentas" asp-action="Registro">
+                        Registro
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Cuentas" asp-action="Login">
+                        Login
+                    </a>
+                </li>
+            }
+
         </ul>
+
+
+
+
+
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -68,7 +113,9 @@
                                 <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="~/TipoTareas/Index">Tipo de Tareas</a>
-                                        <a class="nav-link" href="~/Prioridads/Index">Prioridad</a>                                      
+                                        <a class="nav-link" href="~/Prioridads/Index">Prioridad</a>
+                                        @*<a class="nav-link" href="~/Cuentas/Registro">Registrar usuario</a>*@
+                                        <a class="nav-link" asp-controller="Cuentas" asp-action="Registro">Registrar usuario</a>
                                     </nav>
                                 </div>
 

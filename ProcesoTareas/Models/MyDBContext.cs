@@ -1,13 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+
 namespace ProcesoTareas.Models
 {
-    public class MyDBContext : DbContext
+    public class MyDBContext : IdentityDbContext
     {
         public MyDBContext(DbContextOptions<MyDBContext> options) : base(options)
         {
