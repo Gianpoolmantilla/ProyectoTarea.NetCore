@@ -171,6 +171,25 @@ namespace ProcesoTareas.Controllers
             return View(modelo);
         }
 
+
+        [AcceptVerbs("Get", "Post")]
+        [AllowAnonymous]
+        [Route("Cuentas/ComprobarEmail")]
+        public async Task<IActionResult> ComprobarEmail(string email)
+        {
+            var user = await gestionUsuarios.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json($"El email {email} No está disponible.");
+            }
+        }
+
+
         //[AllowAnonymous]
         //[HttpPost]
         //[Route("Cuentas/LoginExterno")]
@@ -287,22 +306,6 @@ namespace ProcesoTareas.Controllers
 
 
 
-        //[AcceptVerbs("Get", "Post")]
-        //[AllowAnonymous]
-        //[Route("Cuentas/ComprobarEmail")]
-        //public async Task<IActionResult> ComprobarEmail(string email)
-        //{
-        //    var user = await gestionUsuarios.FindByEmailAsync(email);
-
-        //    if (user == null)
-        //    {
-        //        return Json(true);
-        //    }
-        //    else
-        //    {
-        //        return Json($"El email {email} no está disponible.");
-        //    }
-        //}
 
 
         //[HttpGet]

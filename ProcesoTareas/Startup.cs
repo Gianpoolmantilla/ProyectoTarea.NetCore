@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Session;
 using ProcesoTareas.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace ProcesoTareas
 {
@@ -33,8 +35,7 @@ namespace ProcesoTareas
             services.AddControllersWithViews();
             services.AddDbContext<MyDBContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
             services.AddScoped<ITareaService,TareaService>();
-            services.AddScoped<IReporteService, ReporteService>();
-
+            services.AddScoped<IReporteService, ReporteService>();         
 
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/Login"); // valido que redirija a la cuenta login si no tiene acceso
 
@@ -47,6 +48,14 @@ namespace ProcesoTareas
                 opciones.Password.RequireNonAlphanumeric = false;
             
             });
+
+            //services.AddMvc(options =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            //    options.Filters.Add(new AuthorizeFilter(policy));
+
+            //}).AddXmlSerializerFormatters();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

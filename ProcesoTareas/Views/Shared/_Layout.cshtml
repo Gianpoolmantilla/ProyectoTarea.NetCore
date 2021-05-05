@@ -9,6 +9,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     @*<link href="dist/css/styles.css" rel="stylesheet" />*@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -116,6 +119,7 @@
                                         <a class="nav-link" href="~/Prioridads/Index">Prioridad</a>
                                         @*<a class="nav-link" href="~/Cuentas/Registro">Registrar usuario</a>*@
                                         <a class="nav-link" asp-controller="Cuentas" asp-action="Registro">Registrar usuario</a>
+                                        <a class="nav-link" asp-controller="Administracion" asp-action="Roles">Crear Rol</a>
                                     </nav>
                                 </div>
 

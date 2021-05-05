@@ -517,3 +517,8 @@ E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\ne
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Cuentas\Registro.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Cuentas\Login.cshtml.g.cs
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\libman.json
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Administracion\CrearRol.cshtml.g.cs
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Administracion\ListaRoles.cshtml.g.cs
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Administracion\EditarRol.cshtml.g.cs
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Administracion\EditarUsuarioRol.cshtml.g.cs
