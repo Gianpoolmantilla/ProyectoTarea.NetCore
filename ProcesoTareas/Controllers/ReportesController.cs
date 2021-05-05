@@ -7,9 +7,11 @@ using ProcesoTareas.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProcesoTareas.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProcesoTareas.Controllers
 {
+    [Authorize]
     public class ReportesController : Controller
     {
         private readonly MyDBContext _context;

@@ -12,40 +12,57 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>login</title>
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width" />
+<title>Index</title>
+<style>
+    #login-div {
+        position: absolute;
+        left: 40%;
+        top: 40%;
+        border: 1px solid #ccc;
+        padding: 10px 10px;
+    }
 
+    .field-validation-error {
+        color: red;
+    }
+</style>
 
 </head>
 <body>
-    <form method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="form-group">
+    <div id="login-div" class="form-control">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
             <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Password"></label>
-            <input asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <div class="checkbox">
-                <label asp-for="Recuerdame">
-                    <input asp-for="Recuerdame" />
-                    @Html.DisplayNameFor(m => m.Recuerdame)
-                </label>
+            <div class="form-group">
+
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-    <script src="/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="/Scripts/bootstrap.min.js"></script>
-    <script src="/js/Login.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="sweetalert2.all.min.js"></script>
+            <label asp-for="Password"></label>
+            <div class="form-group">
+
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="Recuerdame">
+                        <input asp-for="Recuerdame" />
+                        @Html.DisplayNameFor(m => m.Recuerdame)
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+    </div>
+       
+        <script src="/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="/Scripts/bootstrap.min.js"></script>
+        <script src="/js/Login.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="sweetalert2.all.min.js"></script>
 </body>
 </html>
 

@@ -132,7 +132,7 @@ namespace ProcesoTareas.Controllers
         }
 
         [HttpGet]
-        [Route("Cuentas/Login")]
+        [Route("Account/Login")]
         //[AllowAnonymous]
         public IActionResult Login()
         {
@@ -150,7 +150,7 @@ namespace ProcesoTareas.Controllers
         }
 
         [HttpPost]
-        [Route("Cuentas/Login")]
+        [Route("Account/Login")]
         //[AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModelo modelo/*, string returnUrl*/)
         {         

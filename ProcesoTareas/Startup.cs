@@ -35,6 +35,10 @@ namespace ProcesoTareas
             services.AddScoped<ITareaService,TareaService>();
             services.AddScoped<IReporteService, ReporteService>();
 
+
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/Login"); // valido que redirija a la cuenta login si no tiene acceso
+
+
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<MyDBContext>().AddErrorDescriber<ErroresCastellano>();
             services.Configure<IdentityOptions>(opciones => 
             {

@@ -476,7 +476,6 @@ E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\ne
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.RazorCoreGenerate.cache
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Prioridads\Create.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Prioridads\Delete.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Prioridads\Details.cshtml.g.cs

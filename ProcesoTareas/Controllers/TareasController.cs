@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using ProcesoTareas.Services;
 
 namespace ProcesoTareas.Controllers
 {
+    [Authorize]
     public class TareasController : Controller
     {
         private readonly MyDBContext _context;
@@ -109,6 +111,7 @@ namespace ProcesoTareas.Controllers
             {
                 try
                 {
+                    tarea.Debaja = "N";
                     tarea.EstadoId = (int)CambioEstado.modificacion; //estado modificacion
                     _context.Update(tarea);
                     await _context.SaveChangesAsync();
