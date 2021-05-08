@@ -522,3 +522,5 @@ E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\ne
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Administracion\ListaRoles.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Administracion\EditarRol.cshtml.g.cs
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Administracion\EditarUsuarioRol.cshtml.g.cs
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Administracion\Usuarios.cshtml.g.cs
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Administracion\EditarUsuario.cshtml.g.cs

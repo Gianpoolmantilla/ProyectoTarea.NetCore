@@ -222,6 +222,110 @@ namespace ProcesoTareas.Controllers
             return RedirectToAction("EditarRol", new { Id = rolId });
         }
 
+        [HttpGet]
+        [Route("Administrador/Usuarios")]
+        public IActionResult Usuarios()
+        {
 
+            return View(_gestionUsuarios.Users);
+        }
+
+
+        [HttpGet]
+        [Route("Administracion/EditarUsuario")]
+        public async Task<IActionResult> EditarUsuario(string id)
+        {
+            var usuario = await _gestionUsuarios.FindByIdAsync(id);
+
+            if (usuario == null)
+            {
+                ViewBag.ErrorMessage = $"Usuario con Id = {id} no fue encontrado";
+                return View("Error");
+            }
+
+            // Una lista de las notificaciones
+            var usuarioClaims = await _gestionUsuarios.GetClaimsAsync(usuario);
+            // GetRolesAsync returns the list of user Roles
+            var usuarioRoles = await _gestionUsuarios.GetRolesAsync(usuario);
+
+            
+
+            var model = new EditarUsuarioModelo
+            {
+                Id = usuario.Id,
+                Email = usuario.Email,
+                NombreUsuario = usuario.UserName,
+                Password = usuario.PasswordHash,
+                Notificaciones = usuarioClaims.Select(c => c.Type + " : " + c.Value).ToList(),
+                Roles = usuarioRoles
+             
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("Administracion/EditarUsuario")]
+        public async Task<IActionResult> EditarUsuario(EditarUsuarioModelo model)
+        {
+            var usuario = await _gestionUsuarios.FindByIdAsync(model.Id);
+           
+           
+            if (usuario == null)
+            {
+                ViewBag.ErrorMessage = $"Usuario con Id = {model.Id} no fue encontrado";
+                return View("Error");
+            }
+            else
+            {
+                usuario.Email = model.Email;
+                usuario.UserName = model.NombreUsuario;               
+                usuario.PasswordHash = _gestionUsuarios.PasswordHasher.HashPassword(usuario, model.Password.ToString());               
+                var resultado = await _gestionUsuarios.UpdateAsync(usuario);
+              ;
+
+                if (resultado.Succeeded)
+                {
+                    return RedirectToAction("Usuarios", "Administracion");
+                }
+
+                foreach (var error in resultado.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        [Route("Administracion/BorrarUsuario")]
+        public async Task<IActionResult> BorrarUsuario(string id)
+        {
+            var user = await _gestionUsuarios.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"Usuario con Id = {id} no fue encontrado";
+                return View("Error");
+            }
+            else
+            {
+                var resultado = await _gestionUsuarios.DeleteAsync(user);
+
+                if (resultado.Succeeded)
+                {
+                    return RedirectToAction("Usuarios", "Administracion");
+                }
+
+                foreach (var error in resultado.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View();
+
+            }
+        }
     }
 }
