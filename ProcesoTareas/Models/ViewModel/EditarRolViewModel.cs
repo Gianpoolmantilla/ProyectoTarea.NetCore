@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProcesoTareas.Models
+namespace ProcesoTareas.Models.ViewModel
 {
     public class EditarRolViewModel
     {

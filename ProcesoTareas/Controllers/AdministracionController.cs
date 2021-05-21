@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProcesoTareas.Services;
+using ProcesoTareas.Models.ViewModel;
 
 namespace ProcesoTareas.Controllers
 {
@@ -14,13 +16,16 @@ namespace ProcesoTareas.Controllers
     {
         private readonly RoleManager<IdentityRole> _gestionRoles;
         private readonly UserManager<IdentityUser> _gestionUsuarios;
+        private readonly SignInManager<IdentityUser> _gestionLogin;
+        private readonly AdministracionService _administracionService;
 
-        public AdministracionController(RoleManager<IdentityRole> gestionRoles, UserManager<IdentityUser> gestionUsuarios)
+        public AdministracionController(RoleManager<IdentityRole> gestionRoles, UserManager<IdentityUser> gestionUsuarios, SignInManager<IdentityUser> gestionLogin)
         {
             _gestionRoles = gestionRoles;
             _gestionUsuarios = gestionUsuarios;
+            _gestionLogin = gestionLogin;
+            _administracionService = new AdministracionService();
         }
-
 
         [HttpGet]
         [Route("Administracion/CrearRol")]
@@ -52,14 +57,9 @@ namespace ProcesoTareas.Controllers
                 {
                     ModelState.AddModelError("",error.Description);
                 }
-
             }
-
             return View(model);
-
-
         }
-
 
         [HttpGet]
         [Route("Administracion/Roles")]
@@ -68,9 +68,6 @@ namespace ProcesoTareas.Controllers
             var roles = _gestionRoles.Roles;
             return View(roles);
         }
-
-
-
 
         [HttpGet]
         [Route("Administracion/EditarRol")]
@@ -134,11 +131,6 @@ namespace ProcesoTareas.Controllers
                 return View(model);
             }
         }
-
-
-        ////////////////////////////////
-
-
         [HttpGet]
         [Route("Administracion/EditarUsuarioRol")]
         public async Task<IActionResult> EditarUsuarioRol(string rolId)
@@ -223,12 +215,29 @@ namespace ProcesoTareas.Controllers
         }
 
         [HttpGet]
-        [Route("Administrador/Usuarios")]
+        [Route("Administracion/Usuarios")]
         public IActionResult Usuarios()
         {
 
             return View(_gestionUsuarios.Users);
         }
+
+        [HttpPost]
+        [Route("Administracion/Usuarios")]
+        public IActionResult Usuarios(string usuario)
+        {
+            if (usuario != null)
+            {
+                var result = _administracionService.GeUsuariosFiltrados(_gestionUsuarios, usuario);
+
+                return View(result.ToList());
+            }
+            else
+            {
+                return View(_gestionUsuarios.Users);
+            }
+              
+       }
 
 
         [HttpGet]
@@ -327,5 +336,45 @@ namespace ProcesoTareas.Controllers
 
             }
         }
+
+        [HttpGet]
+        [Route("Administracion/NuevoUsuario")]
+        //[AllowAnonymous]
+        public IActionResult NuevoUsuario()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("Administracion/NuevoUsuario")]
+        public async Task<IActionResult> NuevoUsuario(RegistroModelo model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Volcamos los datos de la clase RegistroModelo a la clase IdentityUser
+                var usuario = new IdentityUser
+                {
+                    UserName = model.User,
+                    Email = model.Email
+                };
+                // Guardamos datos de usuario en la tabla de base de datos AspNetUsers
+                var resultado = await _gestionUsuarios.CreateAsync(usuario, model.Password);
+
+                // Si el usuario se creo correctamente y logamos correctamente, redirigimos a la 
+                //página de inicio salvo que sea administrador
+                if (resultado.Succeeded)
+                {
+                    await _gestionLogin.SignInAsync(usuario, isPersistent: false);
+                    return RedirectToAction("Usuarios", "Administracion"); 
+                }
+                //Contrlar el error en el caso que se produzca
+                foreach (var error in resultado.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+            return View(model);
+        }
+
     }
 }

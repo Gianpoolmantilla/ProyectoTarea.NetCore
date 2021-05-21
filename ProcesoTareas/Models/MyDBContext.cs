@@ -20,7 +20,7 @@ namespace ProcesoTareas.Models
         public DbSet<Estado> Estados { get; set; }
         public DbSet<Prioridad> Prioridades { get; set; }
         public DbSet<TipoTarea> TipoTareas { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
+      
         // public object Tareas { get; internal set; }
 
 
@@ -36,9 +36,9 @@ namespace ProcesoTareas.Models
                 new Estado {Id =5, CodEstado = 900, Descripcion = "Rechazado" }
                 );
 
-            modelBuilder.Entity<Usuario>().HasData(
-                new Usuario { Id = 1, Nombre = "Administrador", Email = "soporte@mail.com", NombreuserId = "admin", Password = "123", Debaja = "", FechaAlta = DateTime.Now, UserId = "", FechaMod = DateTime.Now}
-                );
+            //modelBuilder.Entity<Usuario>().HasData(
+            //    new Usuario { Id = 1, Nombre = "Administrador", Email = "soporte@mail.com", NombreuserId = "admin", Password = "123", Debaja = "", FechaAlta = DateTime.Now, UserId = "", FechaMod = DateTime.Now}
+            //    );
 
 
 

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProcesoTareas.Models
+namespace ProcesoTareas.Models.ViewModel
 {
     public class CrearRolViewModel
     {

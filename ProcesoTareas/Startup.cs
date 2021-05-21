@@ -41,12 +41,13 @@ namespace ProcesoTareas
 
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<MyDBContext>().AddErrorDescriber<ErroresCastellano>();
-            services.Configure<IdentityOptions>(opciones => 
+            services.Configure<IdentityOptions>(opciones =>
             {
-                opciones.Password.RequiredLength = 6;
+                opciones.Password.RequiredLength = 3;
                 opciones.Password.RequiredUniqueChars = 3;
                 opciones.Password.RequireNonAlphanumeric = false;
-            
+                opciones.Password.RequireUppercase = false;
+                opciones.Password.RequireLowercase = false;   
             });
 
             //services.AddMvc(options =>

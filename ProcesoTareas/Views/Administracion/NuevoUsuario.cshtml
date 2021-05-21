@@ -1,7 +1,7 @@
 ﻿@model ProcesoTareas.Models.ViewModel.RegistroModelo
 
 @{
-    ViewBag.Title = "Registro de usuarios";
+    ViewBag.Title = "Nuevo de usuarios";
     Layout = "_Layout";
 }
 
@@ -12,6 +12,11 @@
         <form method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="User"></label>
+                <input asp-for="User" class="form-control" />
+                <span asp-validation-for="User" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
@@ -20,8 +25,11 @@
                 <label asp-for="Password"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
-            </div>  
+            </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
+        <div>
+            <a asp-action="Usuarios">Back to List</a>
+        </div>
     </div>
 </div>

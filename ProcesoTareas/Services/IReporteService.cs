@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProcesoTareas.Models;
+using ProcesoTareas.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

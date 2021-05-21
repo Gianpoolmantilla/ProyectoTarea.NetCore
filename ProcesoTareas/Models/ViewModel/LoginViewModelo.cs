@@ -5,18 +5,17 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication;
 
-namespace ProcesoTareas.Models
+namespace ProcesoTareas.Models.ViewModel
 {
     public class LoginViewModelo
-    {
-
-        [Required(ErrorMessage = "Email obligatorio")]
+    {        
         [EmailAddress]
         public string Email { get; set; }
-
         [Required(ErrorMessage = "Password obligatoria")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Usuario obligatorio")]
+        public string Usuario { get; set; }
 
         [Display(Name = "Recuerdame")]
         public bool Recuerdame { get; set; }
