@@ -12,8 +12,8 @@
 
 
     @*<form asp-action="TareaPorEstado">*@
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row m-10">
+        <div class="col-md-10">
 
             <div class="form-group">
                 <div class="control-label col-md-2">Estado</div>
@@ -44,71 +44,79 @@
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-10">
         <div class="col-md-offset-2 col-md-12">
             <input type="submit" value="Buscar" class="btn btn-success" />
         </div>
     </div>
 }
-    <table class="table  table-hover table-bordered">
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Estado
-            </th>
-            <th>
-                tarea
-            </th>
-            <th>
-                tipo de tarea
-            </th>
-            <th>
-                Prioridad
-            </th>
-            <th>
-                Fecha de alta
-            </th>
-            <th>
-                Observacion
-            </th>
-        </tr>
-        @if (Model != null)
-        {
-            @foreach (var item in Model)
+
+
+<div class="row m-10">
+    <div class="col-md-10">
+
+        <table class="table  table-hover table-bordered">
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    tarea
+                </th>
+                <th>
+                    tipo de tarea
+                </th>
+                <th>
+                    Prioridad
+                </th>
+                <th>
+                    Fecha de alta
+                </th>
+                <th>
+                    Observacion
+                </th>
+            </tr>
+            @if (Model != null)
             {
+                @foreach (var item in Model)
+                {
 
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tarea.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tarea.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoTarea.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prioridad.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tarea.FechaAlta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tarea.Observacion)
-        </td>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tarea.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Estado.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tarea.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoTarea.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Prioridad.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tarea.FechaAlta)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tarea.Observacion)
+                        </td>
+                    </tr>
+                }
 
-    </tr>
             }
 
+        </table>
+    </div>
+</div>
 
-        }
 
-    </table>
 
-    @*</form>*@
+
+@*</form>*@
 

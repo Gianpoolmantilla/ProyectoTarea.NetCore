@@ -10,7 +10,7 @@ namespace ProcesoTareas.Models
     {
         [Key]       
         public int Id { get; set; }
-        
+        [Required(ErrorMessage = "El campo Tipo es obligatorio")] //revision
         public  string Nombre { get; set; }      
         public string Observacion { get; set; }
 

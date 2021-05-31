@@ -8,70 +8,156 @@
     List<SelectListItem> TipoTareaId = (List<SelectListItem>)ViewBag.itemsTipoT;
 }
 
-<h2>Crear Tarea</h2>
-<hr />
-<div class="row">
-    <div class="col-md-10">
-        <form asp-action="Create">
+@*<div class="row m-10">
+        <h2>Crear Tarea</h2>
+    </div>
+    <hr />*@
+
+
+<script type="text/javascript">
+
+
+    //$(document).ready(function () {
+    //    var nombre, vencimiento, tipo, prioridad;
+    //    nombre = document.getElementById("nombre_campo").value;
+
+
+
+    //    $('#btnValidoAlerta').click(function () {
+
+    //        if (nombre === "") {
+    //            Swal.fire({
+    //                title: 'se grabo con exito!',
+    //                icon: 'success',
+    //                confirmButtonText: 'Aceptar'
+    //            });
+
+    //        } else {
+    //            Swal.fire({
+    //                title: 'Error!',
+    //                text: 'error al generar la tarea',
+    //                icon: 'error',
+    //                confirmButtonText: 'Aceptar'
+    //            });
+
+    //        }
+
+    //        //alert("wooowwww");
+    //    });
+
+    //});
+
+
+    function valido() {
+        let nombre, vencimiento, tipo, prioridad;
+        nombre = document.getElementById("Nombre").value;
+        vencimiento = document.getElementById("FechaVencimiento").value;
+        tipo = document.getElementById("normalDropwn").value;
+        prioridad = document.getElementById("normalDropwn2").value;
+        if (vencimiento === "") {
+            return false;
+        } else {
+            Swal.fire({
+                title: 'se grabo con exito!',
+                icon: 'success',
+                showConfirmButton: false
+            });
+        }
+    }
+
+
+
+</script>
+
+
+<div class="card-border-success">
+    <div class="card-footer">
+        <h5> </h5>
+    </div>
+    <div class="col-md-12">
+        <form asp-action="Create" onsubmit="return valido();">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <div class="control-label col-md-2">Nombre</div>
                 <div class="col-6">
-                    <input asp-for="Nombre" class="form-control" />
+                    <input asp-for="Nombre" class="form-control" id="Nombre" />
                     <span asp-validation-for="Nombre" class="text-danger"></span>
-
                 </div>
-              
             </div>
             <div class="form-group">
                 <div class="control-label col-md-2">Vencimiento</div>
                 <div class="col-4">
-                    <input asp-for="FechaVencimiento" class="form-control" value="" />
+                    <input asp-for="FechaVencimiento" class="form-control" value="" id="FechaVencimiento" />
                     <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
+
                 </div>
-                  
+
             </div>
-                <div class="form-group">
-                    <div class="control-label col-md-2">Tipo De Tarea</div>
-                    <div class="col-4">                      
-                        @Html.DropDownListFor(model => model.TipoTareaId, TipoTareaId, "Seleccione un tipo..", new { id = "normalDropwn", @class = "form-control" })
-                        <span asp-validation-for="TipoTareaId" class="text-danger"></span>
-                    </div>
+            <div class="form-group">
+                <div class="control-label col-md-2">Tipo De Tarea</div>
+                <div class="col-4">
+                    @Html.DropDownListFor(model => model.TipoTareaId, TipoTareaId, "Seleccione un tipo..", new { id = "normalDropwn", @class = "form-control" })
+                    <span asp-validation-for="TipoTareaId" class="text-danger"></span>
+
                 </div>
-                <div class="form-group">
-                    <div class="control-label col-md-2">Prioridad</div>
-                    <div class="col-4">
-                        @*@Html.DropDownList("prioridad", PrioridadId, "Seleccione un prioridad..", new { id = "normalDropwn2", @class = "form-control" })*@
-                        @Html.DropDownListFor(model => model.PrioridadId, PrioridadId, "Seleccione un prioridad..", new { id = "normalDropwn2", @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2">Prioridad</div>
+                <div class="col-4">
+                    @*@Html.DropDownList("prioridad", PrioridadId, "Seleccione un prioridad..", new { id = "normalDropwn2", @class = "form-control" })*@
+                    @Html.DropDownListFor(model => model.PrioridadId, PrioridadId, "Seleccione un prioridad..", new { id = "normalDropwn2", @class = "form-control" })
+                    <span asp-validation-for="PrioridadId" class="text-danger"></span>
 
-                        <span asp-validation-for="PrioridadId" class="text-danger"></span>
 
-                    </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="control-label col-md-2">Observación</div>
-                    <div class="col-md-12">
-                        @Html.TextAreaFor(model => model.Observacion, new { cols = 600, rows = 10, @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-group">
+                <div class="control-label col-md-2">Observación</div>
+                <div class="col-11">
+                    @Html.TextAreaFor(model => model.Observacion, new { rows = 8, @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
+                    <span class="messages"></span>
                 </div>
+            </div>
 
-                <div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-12">
-                            <input type="submit" value="Guardar" class="btn btn-success" />
-                            @*<button class="btn btn-danger" value="atras">
-                                @Html.ActionLink("Atras", "Index", null, "Tarea", htmlAttributes: new { @class = "text-white" })
 
-                            </button>*@
-                        </div>
-                    </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12">                     
+                    <input type="submit" value="Guardar" class="btn btn-success" id="btnValidoAlerta" />
                 </div>
+            </div>
 
-</form>
+        </form>
+
     </div>
 </div>
+
+
+
+@*<div class="card-block">
+        <p>use button<code> onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-1']);"</code> to use effect.</p>
+        <ul>
+            <li>
+                <button type="button" class="btn btn-primary sweet-1 m-b-10" onclick="if (!window.__cfRLUnblockHandlers) return false; _gaq.push(['_trackEvent', 'example', 'try', 'sweet-1']);" data-cf-modified-d28fd8086f5eb18f81d8672a-="">Basic</button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-success alert-success-msg m-b-10" onclick="if (!window.__cfRLUnblockHandlers) return false; _gaq.push(['_trackEvent', 'example', 'try', 'alert-success']);" data-cf-modified-d28fd8086f5eb18f81d8672a-="">Success</button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-warning alert-confirm m-b-10" onclick="if (!window.__cfRLUnblockHandlers) return false; _gaq.push(['_trackEvent', 'example', 'try', 'alert-confirm']);" data-cf-modified-d28fd8086f5eb18f81d8672a-="">Confirm</button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-danger alert-success-cancel m-b-10" onclick="if (!window.__cfRLUnblockHandlers) return false; _gaq.push(['_trackEvent', 'example', 'try', 'alert-success-cancel']);" data-cf-modified-d28fd8086f5eb18f81d8672a-="">Success or Cancel</button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-primary alert-prompt m-b-10" onclick="if (!window.__cfRLUnblockHandlers) return false; _gaq.push(['_trackEvent', 'example', 'try', 'alert-prompt']);" data-cf-modified-d28fd8086f5eb18f81d8672a-="">Prompt</button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-success alert-ajax m-b-10" onclick="if (!window.__cfRLUnblockHandlers) return false; _gaq.push(['_trackEvent', 'example', 'try', 'alert-ajax']);" data-cf-modified-d28fd8086f5eb18f81d8672a-="">Ajax</button>
+            </li>
+        </ul>
+    </div>*@
 
 
 

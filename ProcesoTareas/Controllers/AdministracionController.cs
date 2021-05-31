@@ -288,10 +288,14 @@ namespace ProcesoTareas.Controllers
             else
             {
                 usuario.Email = model.Email;
-                usuario.UserName = model.NombreUsuario;               
-                usuario.PasswordHash = _gestionUsuarios.PasswordHasher.HashPassword(usuario, model.Password.ToString());               
+                usuario.UserName = model.NombreUsuario;
+                if (model.Password != null)
+                {
+                    usuario.PasswordHash = _gestionUsuarios.PasswordHasher.HashPassword(usuario, model.Password.ToString());
+                }
+
                 var resultado = await _gestionUsuarios.UpdateAsync(usuario);
-              ;
+              
 
                 if (resultado.Succeeded)
                 {

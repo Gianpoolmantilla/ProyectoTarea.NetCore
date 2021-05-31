@@ -27,6 +27,8 @@ namespace ProcesoTareas.Controllers
         #region estado de creacion
 
         // GET: Tareas/Create
+        [HttpGet]
+        [Route("Tareas/Create")]
         public IActionResult Create()
         {
             ViewBag.itemsPrioridad = _tareaService.GetFkPrioridad(_context.Prioridades);
@@ -35,6 +37,7 @@ namespace ProcesoTareas.Controllers
         }
 
         [HttpPost]
+        [Route("Tareas/Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,TipoTareaId,Observacion,PrioridadId,EstadoId,Debaja,FechaAlta,UserId,FechaMod,FechaVencimiento")] Tarea tarea)
         {
@@ -59,7 +62,8 @@ namespace ProcesoTareas.Controllers
 
 
         #region estado de Modificacion
-
+        [HttpGet]
+        [Route("Tareas/Modificacion")]
         public IActionResult Modificacion()
         {
             ViewBag.itemsPrioridad = _tareaService.GetFkPrioridad(_context.Prioridades);
@@ -162,7 +166,8 @@ namespace ProcesoTareas.Controllers
 
 
         #region estado Pendiente
-
+        [HttpGet]
+        [Route("Tareas/Pendientes")]
         public IActionResult Pendientes()
         {
             List<Pendiente> Dstarea = _tareaService.GetPendiente(_context);

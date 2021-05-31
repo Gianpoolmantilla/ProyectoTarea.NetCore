@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "P8kurVE4upqcWEFIvsBf4tKBcfACBh3HkZpicL0kDtcXDv+/N7UH4oqdh+sT+xD7AHBPtMdmgGGcEHjBWxqu2Q==",
+  "dgSpecHash": "R03GTbGTEoElXX8rw1jFmHVw2WiwbEVcMRlOjdWwNjeeQ7sYtkAZFkedE/tL36vDJpvwLehcvsH7ruq49lQctQ==",
   "success": true,
-  "projectFilePath": "E:\\Users\\work\\Desktop\\PROYECTOS\\ProyectoTarea.NetCore\\ProcesoTareas\\ProcesoTareas.csproj",
+  "projectFilePath": "E:\\Users\\work\\Desktop\\PROYECTOS\\ProyectoTarea.NetCore - copia\\ProcesoTareas\\ProcesoTareas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\work\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\work\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.5\\microsoft.aspnetcore.cryptography.internal.5.0.5.nupkg.sha512",
