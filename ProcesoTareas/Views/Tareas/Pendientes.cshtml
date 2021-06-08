@@ -64,13 +64,24 @@
 
                 <td>
                     <div class="col-sm-1">
-
-                        <form asp-action="Realizado" asp-route-id="@item.Id">
-                            <input type="submit" value="Realizado" class="btn btn-dark" />
-                        </form>                    
+                        <div>
+                            <button class="btn btn-success" value="Realizado">
+                                <a asp-action="Realizado" asp-route-id="@item.Id" class="text-white"><i class="far fa-check-circle"></i></a>
+                            </button>
+                        </div>
+                        <br />
                         <form asp-action="Rechazado" asp-route-id="@item.Id">
-                            <input type="submit" value="Rechazar" class="btn btn-danger" />
+                            <button type="submit" class="btn btn-danger" value="DarBaja">
+                                <a asp-action="Rechazado" asp-route-id="@item.Id" class="text-white"> <i class="far fa-trash-alt"></i></a>
+                            </button>
                         </form>
+
+                        @*<form asp-action="Realizado" asp-route-id="@item.Id">
+            <input type="submit" value="Realizado" class="btn btn-dark" />
+        </form>
+        <form asp-action="Rechazado" asp-route-id="@item.Id">
+            <input type="submit" value="Rechazar" class="btn btn-danger" />
+        </form>*@
 
 
                     </div>

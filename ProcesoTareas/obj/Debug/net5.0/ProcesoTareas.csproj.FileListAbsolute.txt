@@ -504,7 +504,6 @@ E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\ne
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ref\ProcesoTareas.dll
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.pdb
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.genruntimeconfig.cache
-E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.csprojAssemblyReference.cache
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
@@ -696,3 +695,4 @@ E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore - copia\ProcesoTareas\obj\
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore - copia\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.Views.pdb
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore - copia\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.csproj.CopyComplete
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore - copia\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.genruntimeconfig.cache
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.csproj.AssemblyReference.cache

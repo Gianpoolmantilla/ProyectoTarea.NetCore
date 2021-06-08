@@ -10,8 +10,9 @@ using System.Web;
 namespace ProcesoTareas.Models
 {
     public class MyDBContext : IdentityDbContext
-    {
-        public MyDBContext(DbContextOptions<MyDBContext> options) : base(options)
+    {      
+
+        public MyDBContext(DbContextOptions dbContextOptions, DbContextOptions<MyDBContext> options) : base(options)
         {
 
         }

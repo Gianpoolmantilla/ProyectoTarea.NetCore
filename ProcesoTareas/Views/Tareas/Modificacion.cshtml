@@ -12,21 +12,23 @@
 
 }
 
-<h2>Modificar Tarea</h2>
+@*<h2>Modificar Tarea</h2>*@
 
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>*@
 @using (Html.BeginForm())
 {
 
-    <div class="form-group">
-        <div class="control-label col-md-2">prioridad</div>
-        <div class="col-3">
-            @Html.DropDownList("prioridad", listaPrioridad as IEnumerable<SelectListItem>, "Seleccione un prioridad..", new { id = "normalDropwn2", @class = "form-control" })
-            <span class="text-danger"></span>
-        </div>
+<div class="card-border-success">
+
+    <div class="card-footer">
+        <h5> </h5>
     </div>
+
+    <div class="control-label col-md-2">prioridad</div>
+    <div class="col-3">
+        @Html.DropDownList("prioridad", listaPrioridad as IEnumerable<SelectListItem>, "Seleccione un prioridad..", new { id = "normalDropwn2", @class = "form-control" })
+        <span class="text-danger"></span>
+    </div>
+</div>
     <div class="form-group">
         <div class="control-label col-md-2">Tipo de tarea</div>
         <div class="col-3">
@@ -39,6 +41,7 @@
             <input type="submit" value="Buscar" class="btn btn-success" />
         </div>
     </div>
+    <br />
 }
 
 <table class="table">
@@ -70,6 +73,9 @@
         </tr>
     </thead>
     <tbody>
+
+        @*white-space: normal;*@
+
         @foreach (var item in Model)
         {
             <tr>
@@ -97,16 +103,27 @@
                 </td>
 
                 <td>
-                    <div class="col-sm-1">
-                        <button class="btn btn-dark text-white" value="Editar">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="text-white">Editar</a>
-                        </button>
-                        <form asp-action="DarBaja" asp-route-id="@item.Id">
-                            <input type="submit" value="DarBaja" class="btn btn-danger" />
-                        </form>
+                    <div class="col-sm-2">
+                        <div>
+                            <button class="btn btn-dark text-white" value="Editar">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="text-white"><i class="far fa-edit"></i></a>
+                            </button>
+                        </div>
+                        <br />
+                        <div>
+                            <form asp-action="DarBaja" asp-route-id="@item.Id">
+                                <button type="submit" class="btn btn-danger" value="DarBaja">
+                                    <a asp-action="DarBaja" asp-route-id="@item.Id" class="text-white"> <i class="far fa-trash-alt"></i></a>
+                                </button>
+                                @*<input type="submit" value="DarBaja" class="btn btn-danger" />*@
+                            </form>
+                        </div>
+
+
+
                         @*<form asp-action="Delete" asp-route-id="@item.Id">
-                                <input type="submit" value="Delete" class="btn btn-danger" />
-                            </form>*@
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>*@
                     </div>
 
                 </td>

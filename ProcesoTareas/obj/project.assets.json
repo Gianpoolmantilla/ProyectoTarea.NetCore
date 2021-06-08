@@ -7637,11 +7637,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Users\\work\\Desktop\\PROYECTOS\\ProyectoTarea.NetCore - copia\\ProcesoTareas\\ProcesoTareas.csproj",
+      "projectUniqueName": "E:\\Users\\work\\Desktop\\PROYECTOS\\ProyectoTarea.NetCore\\ProcesoTareas\\ProcesoTareas.csproj",
       "projectName": "ProcesoTareas",
-      "projectPath": "E:\\Users\\work\\Desktop\\PROYECTOS\\ProyectoTarea.NetCore - copia\\ProcesoTareas\\ProcesoTareas.csproj",
+      "projectPath": "E:\\Users\\work\\Desktop\\PROYECTOS\\ProyectoTarea.NetCore\\ProcesoTareas\\ProcesoTareas.csproj",
       "packagesPath": "C:\\Users\\work\\.nuget\\packages\\",
-      "outputPath": "E:\\Users\\work\\Desktop\\PROYECTOS\\ProyectoTarea.NetCore - copia\\ProcesoTareas\\obj\\",
+      "outputPath": "E:\\Users\\work\\Desktop\\PROYECTOS\\ProyectoTarea.NetCore\\ProcesoTareas\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\work\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7715,7 +7715,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
