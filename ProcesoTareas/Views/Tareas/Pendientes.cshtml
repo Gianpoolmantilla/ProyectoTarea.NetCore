@@ -5,11 +5,109 @@
     Layout = "_Layout";
 }
 
-<h2>Pendientes</h2>
 
+@*<script>
+
+    //$('.formulario-eliminar').submit(function(e){
+    //    e.preventDefault();
+
+    //    Swal.fire({
+    //                title: 'Estas seguro?',
+    //                text: "No podras revertir esto!",
+    //                icon: 'warning',
+    //                showCancelButton: true,
+    //                confirmButtonColor: '#3085d6',
+    //                cancelButtonColor: '#d33',
+    //                confirmButtonText: 'Si,borralo!'
+    //            }).then((result) => {
+    //                if (result.isConfirmed) {
+    //                    Swal.fire(
+    //                        'Eliminado!',
+    //                        'Su archivo ha sido eliminado.',
+    //                        'success'
+    //                    )
+    //                }
+    //            });
+
+    //});
+
+
+    //$(document).ready(function () {
+
+    //    $('#btnRealizado').click(function () {
+
+    //        if (true) {
+    //            Swal.fire({
+    //                title: 'Estas seguro?',
+    //                text: "No podras revertir esto!",
+    //                icon: 'warning',
+    //                showCancelButton: true,
+    //                confirmButtonColor: '#3085d6',
+    //                cancelButtonColor: '#d33',
+    //                confirmButtonText: 'Si,borralo!'
+    //            }).then((result) => {
+    //                if (result.isConfirmed) {
+    //                    Swal.fire(
+    //                        'Eliminado!',
+    //                        'Su archivo ha sido eliminado.',
+    //                        'success'
+    //                    )
+    //                }
+    //            });
+    //        }
+
+
+    //    });
+
+    //});
+    function validoComfirmacion() {
+
+
+        Swal.fire({
+            title: 'Estas seguro?',
+            text: "No podras revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si,borralo!'
+        }).then((result) => {
+            if (result.value) {
+                this.name;
+                //Swal.fire(
+                //    'Eliminado!',
+                //    'Su archivo ha sido eliminado.',
+                //    'success'
+                //)
+               // this.isConfirmed = true;
+            }
+        });
+       
+
+    }
+
+</script>*@
+
+
+
+
+
+
+
+
+
+
+
+<div class="card-border-success">
+    <div class="card-footer">
+        <h4 class="text-center">Pendientes</h4>
+    </div>
+    <br />
+</div>
 <table class="table">
     <thead>
         <tr>
+            <th></th>
             <th>
                 id
             </th>
@@ -32,62 +130,56 @@
                 Vencimiento
             </th>
 
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-
-                    @item.Nombre
-                </td>
-                <td>
-                    @item.TipoTarea
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Observacion)
-                </td>
-                <td>
-                    @item.Prioridad
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaAlta)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaVencimiento)
-                </td>
-
-                <td>
-                    <div class="col-sm-1">
-                        <div>
-                            <button class="btn btn-success" value="Realizado">
-                                <a asp-action="Realizado" asp-route-id="@item.Id" class="text-white"><i class="far fa-check-circle"></i></a>
-                            </button>
-                        </div>
-                        <br />
-                        <form asp-action="Rechazado" asp-route-id="@item.Id">
-                            <button type="submit" class="btn btn-danger" value="DarBaja">
-                                <a asp-action="Rechazado" asp-route-id="@item.Id" class="text-white"> <i class="far fa-trash-alt"></i></a>
-                            </button>
-                        </form>
-
-                        @*<form asp-action="Realizado" asp-route-id="@item.Id">
-            <input type="submit" value="Realizado" class="btn btn-dark" />
-        </form>
-        <form asp-action="Rechazado" asp-route-id="@item.Id">
-            <input type="submit" value="Rechazar" class="btn btn-danger" />
-        </form>*@
-
-
+        <tr>
+            <td>
+                <div class="col-sm-1">
+                    <div>
+                        <button class="btn btn-success" value="Realizado" id="btnRealizado">
+                            <a asp-action="Realizado" asp-route-id="@item.Id" class="text-white"><i class="far fa-check-circle"></i></a>
+                        </button>
                     </div>
+                    <br />
+                    <form asp-action="Rechazado" asp-route-id="@item.Id">
+                        <button type="submit" class="btn btn-danger" value="DarBaja">
+                            <a asp-action="Rechazado" asp-route-id="@item.Id" class="text-white"> <i class="far fa-trash-alt"></i></a>
+                        </button>
+                    </form>
 
-                </td>
-            </tr>
+
+                </div>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+
+                @item.Nombre
+            </td>
+            <td>
+                @item.TipoTarea
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacion)
+            </td>
+            <td>
+                @item.Prioridad
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaAlta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaVencimiento)
+            </td>
+
+
+        </tr>
         }
     </tbody>
 </table>

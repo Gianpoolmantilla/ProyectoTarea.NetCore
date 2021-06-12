@@ -5,9 +5,10 @@
 }
 
 
-<h2>Prioridad</h2>
-<hr />
-<div class="row">
+
+<div class="card-border-success">
+    <h4>Prioridad</h4>
+    <br />  
     <div class="col-md-10">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -17,15 +18,18 @@
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="col-md-offset-2 col-md-12">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <button class="btn btn-danger" value="atras">
+                        @Html.ActionLink("Atras", "Index", null, "Prioridad", htmlAttributes: new { @class = "text-white" })
+                    </button>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

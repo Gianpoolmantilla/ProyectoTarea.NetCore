@@ -10746,9 +10746,9 @@ div.DTFC_LeftWrapper table.dataTable, div.DTFC_RightWrapper table.dataTable {
         border-bottom: none
     }
 
-td, th {
-    white-space: nowrap
-}
+/*td, th {*/
+   /* white-space: nowrap*/
+/*}*/
 
 table.fixedHeader-floating {
     position: fixed;

@@ -13,7 +13,7 @@ using ProcesoTareas.Services;
 namespace ProcesoTareas.Controllers
 {
     [Authorize]
-    public class TareasController : Controller
+    public class TareasController : BaseController
     {
         private readonly MyDBContext _context;
         private readonly TareaService _tareaService;
@@ -68,7 +68,7 @@ namespace ProcesoTareas.Controllers
         {
             ViewBag.itemsPrioridad = _tareaService.GetFkPrioridad(_context.Prioridades);
             ViewBag.itemsTipoT = _tareaService.GetFkTipoTarea(_context.TipoTareas);
-            List<Modificacion> Dstarea = _tareaService.GetModificacion(_context,"0","0");
+            List<Modificacion> Dstarea = _tareaService.GetModificacion(_context, "0", "0");
 
             return View(Dstarea);
         }
@@ -123,11 +123,11 @@ namespace ProcesoTareas.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!TareaExists(tarea.Id))
-                    {
-                        return NotFound();
+                    {                        
+                       return NotFound();
                     }
                     else
-                    {
+                    {                      
                         throw;
                     }
                 }
@@ -149,11 +149,20 @@ namespace ProcesoTareas.Controllers
 
         public async Task<IActionResult> DarBaja(int? id)
         {
-            var Tarea = await _context.Tarea.FindAsync(id);
-            Tarea.FechaMod = DateTime.Now;
-            Tarea.Debaja = "S";
-            _context.Tarea.Update(Tarea);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var Tarea = await _context.Tarea.FindAsync(id);
+                Tarea.FechaMod = DateTime.Now;
+                Tarea.Debaja = "S";
+                _context.Tarea.Update(Tarea);
+                await _context.SaveChangesAsync();
+                Notify("Se da debaja la tarea " + id);
+            }
+            catch (Exception ex)
+            {
+                Notify("error en: " + ex.Message, notificationType:NotificationType.error);
+            }
+        
             return RedirectToAction(nameof(Modificacion));
         }
 
@@ -171,28 +180,45 @@ namespace ProcesoTareas.Controllers
         public IActionResult Pendientes()
         {
             List<Pendiente> Dstarea = _tareaService.GetPendiente(_context);
-
             return View(Dstarea);
         }
 
 
         public async Task<IActionResult> Realizado(int? id)
         {
-            var tarea = await _context.Tarea.FindAsync(id);
-            tarea.FechaMod = DateTime.Now;
-            tarea.EstadoId = (int)CambioEstado.realizado; // estado realizado
-            _context.Tarea.Update(tarea);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var tarea = await _context.Tarea.FindAsync(id);
+                tarea.FechaMod = DateTime.Now;
+                tarea.EstadoId = (int)CambioEstado.realizado; // estado realizado
+                _context.Tarea.Update(tarea);
+                await _context.SaveChangesAsync();
+                Notify("Se finalizo la tarea " + id);   
+            }
+            catch (Exception ex)
+            {
+                Notify("error en: " + ex.Message , notificationType: NotificationType.error);              
+            }
             return RedirectToAction(nameof(Pendientes));
         }
         public async Task<IActionResult> Rechazado(int? id)
         {
-            var tarea = await _context.Tarea.FindAsync(id);
-            tarea.FechaMod = DateTime.Now;
-            tarea.EstadoId = (int)CambioEstado.rechazado; // estado Rechazado
-            _context.Tarea.Update(tarea);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var tarea = await _context.Tarea.FindAsync(id);
+                tarea.FechaMod = DateTime.Now;
+                tarea.EstadoId = (int)CambioEstado.rechazado; // estado Rechazado
+                _context.Tarea.Update(tarea);
+                await _context.SaveChangesAsync();
+                Notify("Se rechazo la tarea " + id, notificationType: NotificationType.success);
+
+            }
+            catch (Exception ex)
+            {
+                Notify("error en: " + ex.Message, notificationType: NotificationType.error);
+            }
             return RedirectToAction(nameof(Pendientes));
+
         }
 
 

@@ -696,3 +696,4 @@ E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore - copia\ProcesoTareas\obj\
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore - copia\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.csproj.CopyComplete
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore - copia\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.genruntimeconfig.cache
 E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\ProcesoTareas.csproj.AssemblyReference.cache
+E:\Users\work\Desktop\PROYECTOS\ProyectoTarea.NetCore\ProcesoTareas\obj\Debug\net5.0\Razor\Views\Shared\_notificationPartial.cshtml.g.cs

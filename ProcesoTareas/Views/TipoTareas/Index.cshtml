@@ -4,39 +4,43 @@
     ViewData["Title"] = "Tipo De Tarea";
 }
 
-<h2>Tipo de Tareas</h2>
 
-<p>
-    <button class="btn btn-outline-primary text-white" value="Editar">
-        <a asp-action="Create">Nuevo</a>
-    </button>
+<div class="card-border-success">
 
-</p>
+    <div class="card-footer">
+        <h4 class="text-center">Tipo de tarea</h4>
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-12">
+            <button class="btn btn-success" value="Editar">
+                <a asp-action="Create">Nuevo</a>
+            </button>
+        </div>
+    </div>
+    </div>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th></th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Id)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
             <td>
 
                 <div>
-                    <button class="btn btn-secondary text-white" value="Editar">
+                    <button class="btn btn-dark text-white" value="Editar">
                         <a asp-action="Edit" asp-route-id="@item.Id" class="text-white"><i class="far fa-edit"></i></a>
                     </button>
                 </div>
@@ -53,15 +57,22 @@
 
 
                 @*<button class="btn btn-secondary text-white" value="Editar">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="text-white">Editar</a>
-                </button>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="text-white">Editar</a>
+            </button>
 
-                <form asp-action="DarBaja" asp-route-id="@item.Id">
-                    <input type="submit" value="DarBaja" class="btn btn-danger" />
-                </form>*@
+            <form asp-action="DarBaja" asp-route-id="@item.Id">
+                <input type="submit" value="DarBaja" class="btn btn-danger" />
+            </form>*@
 
             </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+
         </tr>
-}
+        }
     </tbody>
 </table>

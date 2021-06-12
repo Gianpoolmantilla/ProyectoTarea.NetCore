@@ -7,13 +7,16 @@
     ViewBag.Title = "Listado de roles";
 }
 
-<h2>roles</h2>
+<h4 class="text-center">roles</h4>
+<br />
 
 @if (Model.Any())
-{
+{<div class="card-body">
     <a class="btn btn-primary mb-3" style="width:auto" asp-action="CrearRol"
        asp-controller="Administracion">Crear nuevo rol</a>
 
+</div>
+ 
     foreach (var rol in Model)
     {
         <div class="card mb-3">
